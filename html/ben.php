@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+  <title>Ben Don Portfolio</title>
+
+  <link rel="shortcut icon" href="../assets/blogo.png" type="image/x-icon">
+
+  <link rel="stylesheet" type="text/css" href="../assets/css/themify-icons.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/vendor/animate/animate.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/vendor/owl-carousel/owl.carousel.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/vendor/nice-select/css/nice-select.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/vendor/fancybox/css/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/css/virtual.css">
+
+  <link rel="stylesheet" type="text/css" href="../assets/css/topbar.virtual.css">
+</head>
+<body class="theme-blue">
+
+
+  <!-- Back to top button -->
+  <div class="btn-back_to_top">
+    <span class="ti-arrow-up"></span>
+  </div>
+
+  <!-- Setting button -->
+  <div class="config">
+    <div class="template-config">
+      <!-- Settings -->
+      <div class="d-block">
+        <button class="btn btn-fab btn-sm" id="sideel" title="Settings"><span class="ti-settings"></span></button>
+      </div>
+
+
+    </div>
+    <div class="set-menu">
+      <p>Select Color</p>
+      <div class="color-bar" data-toggle="selected">
+        <span class="color-item bg-theme-red selected" data-class="theme-red"></span>
+        <span class="color-item bg-theme-blue" data-class="theme-blue"></span>
+        <span class="color-item bg-theme-green" data-class="theme-green"></span>
+        <span class="color-item bg-theme-orange" data-class="theme-orange"></span>
+        <span class="color-item bg-theme-purple" data-class="theme-purple"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="vg-page page-home" id="home" style="background-image: url(../assets/img/bg_image_1.jpg)">
+    <!-- Navbar -->
+    <div class="navbar navbar-expand-lg navbar-dark sticky" data-offset="500">
+      <div class="container">
+        <!-- <a href="" class="navbar-brand">Portfolio</a> -->
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#main-navbar" aria-expanded="true">
+          <span class="ti-menu"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a href="#home" class="nav-link" data-animate="scrolling">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link" data-animate="scrolling">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="#portfolio" class="nav-link" data-animate="scrolling">Portfolio</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#contact" class="nav-link" data-animate="scrolling">Contact</a>
+            </li>
+          </ul>
+
+          </ul>
+        </div>
+      </div>
+    </div> <!-- End Navbar -->
+    <!-- Caption header -->
+    <div class="caption-header text-center wow zoomInDown">
+      <h5 class="fw-normal">Welcome</h5>
+      <h1 class="fw-light mb-4">I'm <b class="fg-theme">Benedict</b> Donato</h1>
+      <div class="badge">Automation Specialist & Web Developer</div>
+    </div> <!-- End Caption header -->
+    <div class="floating-button"><span class="ti-mouse"></span></div>
+  </div>
+
+  <div class="vg-page page-about" id="about">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4 py-3">
+          <div class="img-place wow fadeInUp">
+            <img src="../assets/img/portfolioben.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 offset-lg-1 wow fadeInRight">
+          <h1 class="fw-light">Benedict "Ben" Donato</h1>
+          <h5 class="fg-theme mb-3">Automation Specialist & Web Developer</h5>
+          <p class="text-muted">“Bringing your digital ideas to life with expert web development and powerful automation solutions.
+            As a passionate freelance web developer and Zapier Technical Support Engineer, I craft seamless,
+                  user-friendly websites and automate workflows that save time, enhance efficiency, and drive success for your business.”</p>
+          <ul class="theme-list">
+            <li><b>From:</b> Manila, PH</li>
+            <li><b>Lives In:</b> Manila, PH</li>
+            <li><b>Age:</b> 33</li>
+            <li><b>Gender:</b> Male</li>
+            <li><b>Contact Number:</b> +63 945-522-9207</li>
+            <li><b>E-mail:</b>benetdonato@gmail.com</li>
+          </ul>
+          <button class="btn btn-theme-outline">
+            <a href="https://docs.google.com/document/d/1YOo5PU0wPfSIMFVEJE79rA6AoMcAs4gtJLNm-bqI3v4/edit?usp=sharing">Hire Me</button><a/>
+
+        </div>
+      </div>
+    </div>
+    <div class="container py-5">
+      <h1 class="text-center fw-normal wow fadeIn">My Skills</h1>
+      <div class="row py-3">
+        <div class="col-md-6">
+          <div class="px-lg-3">
+            <h4 class="wow fadeInUp">Coding skills</h4>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">JavaScript</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 86%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">86%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">PHP</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">95%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">HTML + CSS</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">100%</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="px-lg-3">
+            <h4 class="wow fadeInUp">Design Skills</h4>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Zapier Automation</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">95%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Web Developing</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 99%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">99%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Multimedia Specialist</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">95%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container pt-5">
+      <div class="row">
+        <div class="col-md-6 wow fadeInRight">
+          <h2 class="fw-normal">Education</h2>
+          <ul class="timeline mt-4 pr-md-5">
+            <li>
+              <div class="title">2017-2021</div>
+              <div class="details">
+                <h5>Bacherlor of Science in Computer Science Major in
+                  Information and Technology</h5>
+                <small class="fg-theme">Arellano University</small>
+                <p>Tertiary Level
+                   Graduated</p>
+              </div>
+            </li>
+            <li>
+              <div class="title">2000-2004</div>
+              <div class="details">
+                <h5>Secondary</h5>
+                <small class="fg-theme">San Beda College</small>
+                <p>Secondary Level Passed NEAT Accrediation Dep.Ed</p>
+              </div>
+            </li>
+            <li>
+              <div class="title">1994-2000</div>
+              <div class="details">
+                <h5>Primary</h5>
+                <small class="fg-theme">La Consolacion College</small>
+                <p></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6 wow fadeInRight" data-wow-delay="200ms">
+          <h2 class="fw-normal">Experience</h2>
+          <ul class="timeline mt-4 pr-md-5">
+            <li>
+              <div class="title">2024 - Current</div>
+              <div class="details">
+                <h5>Zapier Technical Support Engineer Automation Specialist</h5>
+                <small class="fg-theme">Zapier Automation</small>
+                <p>I provide expert support in troubleshooting, configuring, and optimizing automated workflows using Zapier. I assist clients with creating
+                  seamless integrations between apps, resolve technical issues, and offer solutions to enhance automation efficiency.
+                    My goal is to help users streamline processes, improve productivity, and ensure smooth automation across various platforms.</p>
+              </div>
+            </li>
+            <li>
+              <div class="title">2020 - Current</div>
+              <div class="details">
+                <h5>Freelance Web Developing and Multi Media</h5>
+                <small class="fg-theme">Donato Trading Co.</small>
+                <p>Provides excelent and professional web developing service, audio and video editing for events.</p>
+              </div>
+            </li>
+            <li>
+              <div class="title">2020</div>
+              <div class="details">
+                <h5>Website Developer</h5>
+                <small class="fg-theme">Kemecon Career Canada</small>
+                <p>Contract based for Website developing and Maintenance of job posting website. </p>
+              </div>
+            </li>
+            <li>
+              <div class="title">2019</div>
+              <div class="details">
+                <h5>Field IT Network Support</h5>
+                <small class="fg-theme">30th South-East Asian Games(SEAGAMES)</small>
+                <p>Network implementation for LAN and WAN connection to provide real time score in SEA games website world wide.
+                  (New Clark Pampanga IT Baseball event)
+                    </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vg-page page-service">
+    <div class="container">
+      <div class="text-center wow fadeInUp">
+        <div class="badge badge-subhead">Service</div>
+      </div>
+      <h1 class="fw-normal text-center wow fadeInUp">What can i do?</h1>
+      <div class="row mt-5">
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-service wow fadeInUp">
+            <div class="icon">
+              <span class="ti-paint-bucket"></span>
+            </div>
+            <div class="caption">
+              <h4 class="fg-theme">Multimedia Specialist</h4>
+              <p>As a Multimedia Specialist in video and audio editing, I create compelling content by editing and enhancing video and audio
+                materials. I specialize in cutting, mixing, and refining multimedia projects to deliver high-quality
+                visuals and sound, ensuring that the final product is engaging, polished, and aligned with the project’s vision.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-service wow fadeInUp">
+            <div class="icon">
+              <span class="ti-search"></span>
+            </div>
+            <div class="caption">
+              <h4 class="fg-theme">IT Network Specialist</h4>
+              <p>As an IT Network Specialist, I design, implement, and manage network infrastructures,
+                ensuring seamless performance and security. I configure and maintain servers, routers, switches, firewalls,
+                 and wireless systems while troubleshooting and optimizing network operations to support business growth and minimize downtime.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-service wow fadeInUp">
+            <div class="icon">
+              <span class="ti-vector"></span>
+            </div>
+            <div class="caption">
+              <h4 class="fg-theme">Automation Specialist</h4>
+              <p>Skilled in Zapier automation at designing and optimizing seamless, automated workflows that connect diverse applications, streamlining business processes and enhancing operational efficiency. By leveraging Zapier's capabilities,
+                create custom automation solutions that integrate systems, reduce manual tasks, and ensure smooth data flow across various platforms..</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-service wow fadeInUp">
+            <div class="icon">
+              <span class="ti-desktop"></span>
+            </div>
+            <div class="caption">
+              <h4 class="fg-theme">Web Development</h4>
+              <p>As a Web Developer, I design, build, and maintain websites and web applications. I specialize in creating user-friendly,
+                responsive, and efficient sites, ensuring smooth functionality across different devices. My skills include
+                 front-end and back-end development, optimizing performance, and implementing security measures to deliver seamless
+                 online experiences.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio page -->
+  <div class="vg-page page-portfolio" id="portfolio">
+    <div class="container">
+      <div class="text-center wow fadeInUp">
+        <div class="badge badge-subhead">Portfolio</div>
+      </div>
+      <h1 class="text-center fw-normal wow fadeInUp">See my work</h1>
+
+      <div class="gridder my-3">
+        <div class="grid-item apps wow zoomIn">
+          <div class="img-place" data-src="../assets/img/work/maki.jpg" data-fancybox data-caption="<h5 class='fg-theme'>Maki Sushi Factory</h5> <p>Food Ordering Website</p>">
+            <img src="../assets/img/work/maki.jpg" alt="">
+            <div class="img-caption">
+              <h5 class="fg-theme">Maki Sushi Factory</h5>
+              <p>Food Ordering Website</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item template wireframes wow zoomIn">
+          <div class="img-place" data-src="../assets/img/work/workhome.jpg" data-fancybox data-caption="<h5 class='fg-theme'>Work Home Career</h5> <p>Job Searching Website</p>">
+            <img src="../assets/img/work/workhome.jpg" alt="">
+            <div class="img-caption">
+              <h5 class="fg-theme">Work Home Career</h5>
+              <p>Job Searching Website</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item graphic ui-ux wow zoomIn">
+          <div class="img-place" data-src="../assets/img/work/1stday1.jpg" data-fancybox data-caption="<h5 class='fg-theme'>IT Network 30th Seagames PH</h5> <p>Field IT Network Specialist</p>">
+            <img src="../assets/img/work/1stday1.jpg" alt="">
+            <div class="img-caption">
+              <h5 class="fg-theme">IT Network 30th Seagames PH</h5>
+              <p>Field IT Network Specialist</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item apps ios wow zoomIn">
+          <div class="img-place" data-src="../assets/img/work/ID.jpg" data-fancybox data-caption="<h5 class='fg-theme'>IT Network 30th Seagames PH</h5> <p>IT Network Specialist WSL-ABL Inc.</p>">
+            <img src="../assets/img/work/ID.jpg" alt="">
+            <div class="img-caption">
+              <h5 class="fg-theme">IT Network 30th Seagames PH</h5>
+              <p>IT Network Specialist WSL-ABL Inc.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item graphic ui-ux wireframes wow zoomIn">
+          <div class="img-place" data-src="../assets/img/work/Zapier.jpg" data-fancybox data-caption="<h5 class='fg-theme'>Zapier Technical Engineer</h5> <p>Games, Streaming</p>">
+            <img src="../assets/img/work/Zapier.jpg" alt="">
+            <div class="img-caption">
+              <h5 class="fg-theme">Zapier Technical Support Engineer</h5>
+              <p>Zapier Automation Specialist</p>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- End gridder -->
+
+
+    </div>
+
+  </div> <!-- End Portfolio page -->
+
+
+
+
+  <!-- Footer -->
+  <div class="vg-footer">
+    <h1 class="text-center"></h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 py-3">
+          <div class="footer-info">
+
+          </div>
+        </div>
+
+        <div class="col-12">
+          <p class="text-center mb-0 mt-4">Ben Don Developer &copy;2022.
+        </div>
+      </div>
+    </div>
+  </div> <!-- End footer -->
+
+
+  <script src="../assets/js/jquery-3.5.1.min.js"></script>
+
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../assets/vendor/owl-carousel/owl.carousel.min.js"></script>
+
+  <script src="../assets/vendor/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+
+  <script src="../assets/vendor/isotope/isotope.pkgd.min.js"></script>
+
+  <script src="../assets/vendor/nice-select/js/jquery.nice-select.min.js"></script>
+
+  <script src="../assets/vendor/fancybox/js/jquery.fancybox.min.js"></script>
+
+  <script src="../assets/vendor/wow/wow.min.js"></script>
+
+  <script src="../assets/vendor/animateNumber/jquery.animateNumber.min.js"></script>
+
+  <script src="../assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+
+  <script src="../assets/js/google-maps.js"></script>
+
+  <script src="../assets/js/topbar-virtual.js"></script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIA_zqjFMsJM_sxP9-6Pde5vVCTyJmUHM&callback=initMap"></script>
+
+
+
+</body>
+</html>
