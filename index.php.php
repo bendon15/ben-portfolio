@@ -1,0 +1,1440 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Benedict Donato – Full Stack Developer, AI & Automation Specialist. Building intelligent systems and modern web solutions.">
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="icon" type="image/png" sizes="64x64" href="./favicon_64.png">
+<link rel="apple-touch-icon" href="./favicon_64.png">
+<title>Benedict Donato — Full Stack Developer & AI Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#030712;
+  --bg2:#060d1a;
+  --bg3:#091224;
+  --card:#0b1628;
+  --card2:#0e1d35;
+  --border:#112240;
+  --border2:#1a3a6b;
+  --blue:#1e6bf5;
+  --blue2:#4d8fff;
+  --blue3:#82b4ff;
+  --cyan:#06d6f7;
+  --text:#e8f0fe;
+  --text2:#a8bcdb;
+  --muted:#4a6480;
+  --white:#ffffff;
+  --sans:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --glow:0 0 40px rgba(30,107,245,.25);
+  --glow2:0 0 80px rgba(30,107,245,.12);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+::selection{background:rgba(30,107,245,.3);color:#fff}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
+
+/* ── NOISE OVERLAY ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:999;opacity:.4;
+}
+
+/* ── AMBIENT BLOBS ── */
+.blob{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px)}
+.blob1{width:600px;height:600px;background:rgba(30,107,245,.07);top:-200px;right:-100px}
+.blob2{width:500px;height:500px;background:rgba(6,214,247,.05);bottom:-200px;left:-100px}
+.blob3{width:300px;height:300px;background:rgba(30,107,245,.05);top:50%;left:50%;transform:translate(-50%,-50%)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:72px;
+  background:rgba(3,7,18,.8);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(17,34,64,.8);
+  transition:background .3s;
+}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-logo-box{
+  width:38px;height:38px;border-radius:8px;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.75rem;font-weight:700;color:#fff;
+  box-shadow:0 0 20px rgba(30,107,245,.4);
+}
+.nav-name{font-size:.92rem;font-weight:700;color:var(--white);letter-spacing:-.01em}
+.nav-name span{color:var(--blue3);font-weight:400}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{
+  font-size:.82rem;font-weight:500;color:var(--muted);
+  transition:color .2s;letter-spacing:.01em;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-status{
+  display:flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:.68rem;color:var(--text2);
+}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:statusPulse 2s infinite}
+@keyframes statusPulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}70%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+.nav-btn{
+  font-family:var(--mono);font-size:.75rem;font-weight:700;
+  background:var(--blue);color:#fff;
+  padding:9px 22px;border-radius:6px;letter-spacing:.03em;
+  transition:background .2s,box-shadow .2s;
+  box-shadow:0 0 24px rgba(30,107,245,.35);
+}
+.nav-btn:hover{background:var(--blue2);box-shadow:0 0 32px rgba(30,107,245,.5)}
+
+/* ── HERO ── */
+#home{
+  min-height:100vh;position:relative;
+  display:flex;align-items:center;
+  padding:100px 5vw 80px;overflow:hidden;
+}
+.hero-bg-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(17,34,64,.4) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(17,34,64,.4) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);
+}
+.hero-glow{
+  position:absolute;width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,rgba(30,107,245,.1) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 420px;gap:80px;
+  align-items:center;width:100%;max-width:1300px;margin:0 auto;
+}
+.hero-left{}
+.hero-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:.7rem;font-weight:500;
+  color:var(--blue3);border:1px solid var(--border2);
+  padding:6px 14px;border-radius:999px;margin-bottom:28px;
+  background:rgba(30,107,245,.06);
+}
+.hero-chip::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:statusPulse 1.8s infinite}
+.hero-title{
+  font-size:clamp(2.8rem,6vw,5.2rem);font-weight:800;
+  line-height:1.05;letter-spacing:-.04em;color:var(--white);
+  margin-bottom:6px;
+}
+.hero-title .line2{
+  background:linear-gradient(135deg,var(--blue2),var(--cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub-title{
+  font-family:var(--mono);font-size:clamp(.85rem,1.5vw,1rem);
+  color:var(--blue3);margin-bottom:24px;letter-spacing:.02em;
+}
+.hero-desc{
+  font-size:1rem;color:var(--text2);
+  max-width:520px;line-height:1.85;margin-bottom:40px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px}
+.btn-primary{
+  font-weight:700;font-size:.9rem;
+  background:linear-gradient(135deg,var(--blue),#1258d4);
+  color:#fff;padding:14px 32px;border-radius:8px;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 4px 32px rgba(30,107,245,.4);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 48px rgba(30,107,245,.6)}
+.btn-outline{
+  font-weight:600;font-size:.9rem;
+  color:var(--text);border:1px solid var(--border2);
+  padding:14px 32px;border-radius:8px;
+  transition:border-color .2s,background .2s,color .2s;
+  background:rgba(17,34,64,.3);
+}
+.btn-outline:hover{border-color:var(--blue2);color:var(--white);background:rgba(30,107,245,.08)}
+.hero-metrics{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:10px;overflow:hidden;
+}
+.metric{
+  background:var(--card);padding:20px 24px;
+  transition:background .2s;
+}
+.metric:hover{background:var(--card2)}
+.metric-num{
+  font-family:var(--mono);font-size:1.8rem;font-weight:700;
+  color:var(--white);line-height:1;margin-bottom:4px;
+}
+.metric-num span{color:var(--blue2);font-size:1.2rem}
+.metric-label{font-size:.75rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+
+/* ── HERO RIGHT: PROFILE CARD ── */
+.profile-card{
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 0 60px rgba(30,107,245,.12),0 32px 64px rgba(0,0,0,.4);
+  position:relative;
+}
+.profile-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+}
+.profile-img-wrap{
+  height:320px;overflow:hidden;position:relative;
+  background:linear-gradient(180deg,var(--bg3) 0%,var(--card) 100%);
+}
+.profile-img-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  transition:transform .5s;
+}
+.profile-card:hover .profile-img-wrap img{transform:scale(1.03)}
+.profile-img-overlay{
+  position:absolute;bottom:0;left:0;right:0;height:80px;
+  background:linear-gradient(to top,var(--card),transparent);
+}
+.profile-info{padding:20px 24px 24px}
+.profile-name{font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.profile-role{font-family:var(--mono);font-size:.72rem;color:var(--blue3);margin-bottom:16px;letter-spacing:.04em}
+.profile-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.profile-tag{
+  font-family:var(--mono);font-size:.63rem;font-weight:500;
+  color:var(--blue3);background:rgba(30,107,245,.1);
+  border:1px solid rgba(30,107,245,.2);
+  padding:3px 10px;border-radius:4px;
+}
+.profile-location{
+  display:flex;align-items:center;gap:6px;
+  font-size:.8rem;color:var(--muted);
+}
+.profile-location::before{content:'📍';font-size:.75rem}
+
+/* ── MARQUEE ── */
+.marquee-wrap{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--bg2);padding:14px 0;overflow:hidden;position:relative;z-index:1;
+}
+.marquee-track{display:flex;gap:0;animation:marquee 28s linear infinite}
+.marquee-item{
+  display:flex;align-items:center;gap:8px;padding:0 28px;
+  font-family:var(--mono);font-size:.7rem;color:var(--muted);
+  white-space:nowrap;border-right:1px solid var(--border);
+  font-weight:500;letter-spacing:.04em;
+}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--blue2);flex-shrink:0}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SECTION ── */
+.section{padding:110px 5vw;position:relative;z-index:1}
+.section-inner{max-width:1300px;margin:0 auto}
+.sec-eyebrow{
+  font-family:var(--mono);font-size:.68rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.16em;color:var(--blue2);
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.sec-eyebrow::before{content:'//';color:var(--muted)}
+.sec-title{
+  font-size:clamp(2rem,4vw,3rem);font-weight:800;
+  letter-spacing:-.04em;color:var(--white);margin-bottom:14px;
+}
+.sec-sub{font-size:.95rem;color:var(--text2);max-width:500px;line-height:1.85;margin-bottom:64px}
+
+/* ── ABOUT ── */
+#about{background:var(--bg2)}
+.about-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start}
+.about-left{}
+.about-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:28px;margin-bottom:20px;
+  transition:border-color .3s;
+}
+.about-card:hover{border-color:var(--border2)}
+.about-card-label{
+  font-family:var(--mono);font-size:.65rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;
+  padding-bottom:12px;border-bottom:1px solid var(--border);
+}
+.info-rows{}
+.info-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;border-bottom:1px solid var(--border);font-size:.88rem;
+}
+.info-row:last-child{border-bottom:none}
+.info-row label{color:var(--muted);font-size:.78rem;font-weight:500}
+.info-row p{color:var(--text);font-weight:500;text-align:right}
+.about-right{}
+.about-bio{font-size:.95rem;color:var(--text2);line-height:1.9;margin-bottom:32px}
+.about-bio strong{color:var(--white)}
+.skills-section{}
+.skills-label{
+  font-family:var(--mono);font-size:.65rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.12em;
+  margin-bottom:20px;
+}
+.skill-item{margin-bottom:20px}
+.skill-meta{display:flex;justify-content:space-between;margin-bottom:8px}
+.skill-name{font-size:.85rem;font-weight:600;color:var(--text)}
+.skill-pct{font-family:var(--mono);font-size:.75rem;color:var(--blue2)}
+.skill-bar{height:4px;background:var(--border);border-radius:999px;overflow:visible;position:relative}
+.skill-fill{
+  height:4px;border-radius:999px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+  position:relative;transition:width 1s ease;
+}
+.skill-fill::after{
+  content:'';position:absolute;right:-1px;top:-4px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--cyan);
+  box-shadow:0 0 10px var(--cyan),0 0 20px rgba(6,214,247,.4);
+}
+
+/* ── SERVICES ── */
+#services{background:var(--bg)}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+.svc{
+  background:var(--bg);padding:48px 40px;
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.svc:hover{background:var(--bg2)}
+.svc::after{
+  content:'';position:absolute;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(30,107,245,.08),transparent 70%);
+  bottom:-60px;right:-60px;pointer-events:none;
+  transition:opacity .3s;opacity:0;
+}
+.svc:hover::after{opacity:1}
+.svc-num{
+  font-family:var(--mono);font-size:.65rem;color:var(--muted);
+  letter-spacing:.1em;margin-bottom:24px;
+}
+.svc-icon{
+  width:52px;height:52px;border-radius:10px;
+  background:rgba(30,107,245,.1);border:1px solid rgba(30,107,245,.2);
+  display:flex;align-items:center;justify-content:center;margin-bottom:24px;
+  transition:background .3s,border-color .3s,box-shadow .3s;
+}
+.svc:hover .svc-icon{
+  background:rgba(30,107,245,.18);border-color:var(--blue);
+  box-shadow:0 0 20px rgba(30,107,245,.3);
+}
+.svc-icon svg{width:24px;height:24px;stroke:var(--blue2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:12px}
+.svc p{font-size:.88rem;color:var(--text2);line-height:1.8}
+.svc-arrow{
+  position:absolute;top:40px;right:40px;
+  font-size:1.2rem;color:var(--border2);
+  transition:color .3s,transform .3s;
+}
+.svc:hover .svc-arrow{color:var(--blue2);transform:translate(2px,-2px)}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--bg2)}
+.exp-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.exp-col-head{
+  font-family:var(--mono);font-size:.68rem;color:var(--blue2);
+  text-transform:uppercase;letter-spacing:.12em;
+  padding-bottom:16px;margin-bottom:32px;
+  border-bottom:1px solid var(--border2);
+  display:flex;align-items:center;gap:8px;
+}
+.exp-col-head::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--blue),transparent);margin-left:0}
+.tl-item{padding-left:24px;margin-bottom:36px;position:relative}
+.tl-item::before{
+  content:'';position:absolute;left:-4px;top:4px;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--bg2);border:1.5px solid var(--blue2);
+}
+.tl-item.active::before{background:var(--blue);box-shadow:0 0 12px rgba(30,107,245,.7);border-color:var(--cyan)}
+.tl-period{
+  font-family:var(--mono);font-size:.65rem;color:var(--cyan);
+  letter-spacing:.06em;margin-bottom:6px;
+}
+.tl-title{font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:3px}
+.tl-company{font-family:var(--mono);font-size:.72rem;color:var(--blue3);margin-bottom:10px}
+.tl-body{font-size:.83rem;color:var(--text2);line-height:1.75}
+
+/* ── TECH STACK ── */
+#stack{background:var(--bg)}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.stack-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:18px 14px;text-align:center;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+  cursor:default;
+}
+.stack-item:hover{
+  border-color:rgba(30,107,245,.5);transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(30,107,245,.1);
+}
+.stack-emoji{font-size:1.6rem;margin-bottom:8px;display:block}
+.stack-name{font-family:var(--mono);font-size:.65rem;color:var(--text2);font-weight:500;letter-spacing:.04em}
+.stack-cat{
+  margin-bottom:32px;
+}
+.stack-cat-label{
+  font-family:var(--mono);font-size:.65rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.12em;
+  margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+
+/* ── PROJECTS ── */
+#projects{background:var(--bg2)}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.proj{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+}
+.proj:hover{
+  border-color:rgba(30,107,245,.4);transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(30,107,245,.1);
+}
+.proj-img{height:175px;overflow:hidden;position:relative;background:var(--bg3)}
+.proj-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;filter:brightness(.85)}
+.proj:hover .proj-img img{transform:scale(1.05);filter:brightness(1)}
+.proj-badge{
+  position:absolute;top:12px;left:12px;
+  font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.07em;
+  background:rgba(3,7,18,.85);border:1px solid var(--border2);
+  color:var(--cyan);padding:3px 9px;border-radius:3px;
+}
+.proj-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.proj-title{font-size:.98rem;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.3}
+.proj-desc{font-size:.82rem;color:var(--text2);line-height:1.75;margin-bottom:14px}
+.proj-stack{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.proj-stack span{
+  font-family:var(--mono);font-size:.6rem;font-weight:600;
+  color:var(--blue3);background:rgba(30,107,245,.08);
+  border:1px solid rgba(30,107,245,.15);
+  padding:2px 8px;border-radius:3px;letter-spacing:.04em;
+}
+.proj-result{
+  font-family:var(--mono);font-size:.7rem;color:var(--text2);
+  background:rgba(6,214,247,.04);border-left:2px solid var(--cyan);
+  padding:8px 12px;border-radius:0 4px 4px 0;
+  line-height:1.6;margin-bottom:16px;flex:1;
+}
+.proj-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.05em;
+  color:var(--blue2);border:1px solid rgba(30,107,245,.3);
+  padding:10px;border-radius:6px;text-align:center;
+  transition:background .2s,color .2s,border-color .2s;display:block;
+}
+.proj-link:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg);padding:120px 5vw}
+.contact-layout{
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;
+}
+.contact-left .sec-title{font-size:clamp(2rem,4vw,3.2rem)}
+.contact-left .sec-sub{margin-bottom:0}
+.contact-right{}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-family:var(--mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.form-group input,.form-group textarea{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:6px;padding:12px 16px;
+  font-family:var(--sans);font-size:.9rem;color:var(--text);
+  outline:none;transition:border-color .2s,box-shadow .2s;resize:none;
+}
+.form-group input:focus,.form-group textarea:focus{
+  border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,107,245,.12);
+}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
+.form-submit{
+  font-family:var(--sans);font-weight:700;font-size:.9rem;
+  background:linear-gradient(135deg,var(--blue),#1258d4);
+  color:#fff;padding:14px;border-radius:8px;border:none;cursor:pointer;
+  transition:box-shadow .2s,transform .2s;
+  box-shadow:0 4px 24px rgba(30,107,245,.35);
+}
+.form-submit:hover{box-shadow:0 8px 40px rgba(30,107,245,.5);transform:translateY(-1px)}
+.contact-info{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+.cinfo{
+  display:flex;align-items:center;gap:12px;
+  font-size:.88rem;color:var(--text2);
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:14px 18px;
+  transition:border-color .2s;
+}
+.cinfo:hover{border-color:var(--border2)}
+.cinfo-icon{
+  width:34px;height:34px;border-radius:6px;
+  background:rgba(30,107,245,.1);border:1px solid rgba(30,107,245,.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:.9rem;
+}
+.cinfo-label{font-family:var(--mono);font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:2px}
+.cinfo-val{font-size:.85rem;color:var(--text);font-weight:500}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:28px 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-brand{display:flex;align-items:center;gap:10px}
+.footer-logo-box{
+  width:30px;height:30px;border-radius:6px;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.6rem;font-weight:700;color:#fff;
+}
+.footer-name{font-size:.82rem;font-weight:600;color:var(--text2)}
+footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-family:var(--mono);font-size:.68rem;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--blue2)}
+
+/* ── FADE IN ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .hero-inner{grid-template-columns:1fr}
+  .profile-card{max-width:380px}
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
+  .services-grid{grid-template-columns:1fr}
+  .about-layout{grid-template-columns:1fr}
+  .exp-layout{grid-template-columns:1fr}
+  .contact-layout{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  nav{padding:0 5vw}
+  .nav-links,.nav-status{display:none}
+  .projects-grid{grid-template-columns:1fr}
+  .hero-metrics{grid-template-columns:1fr 1fr 1fr}
+  footer{flex-direction:column;text-align:center}
+  .footer-links{justify-content:center}
+}
+
+/* ── CERTIFICATIONS ── */
+#certifications{background:var(--bg)}
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.cert-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+  cursor:zoom-in;
+}
+.cert-card:hover{
+  border-color:rgba(30,107,245,.4);transform:translateY(-4px);
+  box-shadow:0 12px 36px rgba(30,107,245,.15);
+}
+.cert-img-wrap{position:relative;overflow:hidden;aspect-ratio:4/3}
+.cert-img-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .5s;filter:brightness(.9);
+}
+.cert-card:hover .cert-img-wrap img{transform:scale(1.05);filter:brightness(1)}
+.cert-zoom-icon{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(3,7,18,.5);opacity:0;transition:opacity .3s;
+  font-size:1.8rem;
+}
+.cert-card:hover .cert-zoom-icon{opacity:1}
+.cert-info{padding:16px 18px}
+.cert-issuer{font-family:var(--mono);font-size:.63rem;color:var(--blue3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.cert-name{font-size:.92rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.cert-date{font-size:.76rem;color:var(--muted)}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(3,7,18,.95);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+  padding:20px;
+}
+.lightbox.open{opacity:1;pointer-events:all}
+.lightbox-img{
+  max-width:90vw;max-height:88vh;object-fit:contain;
+  border-radius:8px;border:1px solid var(--border2);
+  box-shadow:0 0 80px rgba(30,107,245,.2);
+  transform:scale(.92);transition:transform .3s;
+}
+.lightbox.open .lightbox-img{transform:scale(1)}
+.lightbox-close{
+  position:absolute;top:20px;right:24px;
+  font-size:1.6rem;color:var(--text2);cursor:pointer;
+  background:var(--card);border:1px solid var(--border);
+  width:40px;height:40px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  transition:color .2s,border-color .2s;line-height:1;
+}
+.lightbox-close:hover{color:var(--white);border-color:var(--blue)}
+.lightbox-caption{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:.72rem;color:var(--text2);
+  background:var(--card);border:1px solid var(--border);
+  padding:8px 18px;border-radius:6px;white-space:nowrap;
+}
+.proj-case-study{
+    margin-top:20px;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.proj-case-study h4{
+    color:#fff;
+    margin-bottom:12px;
+    font-size:1rem;
+    font-weight:700;
+}
+
+.proj-case-study p{
+    margin-bottom:12px;
+    line-height:1.7;
+    color:#b8c0cc;
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+  <img src="./assets/img/logo3.png" alt="Ben Don Logo" style="height:50px;width:auto;object-fit:contain;">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#stack">Tech Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-status"><span class="status-dot"></span>Available for Work</div>
+    <a href="#contact" class="nav-btn">HIRE ME</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-chip">Full Stack Developer · AI & Automation Specialist</div>
+      <h1 class="hero-title">
+        Building Smarter<br>
+        <span class="line2">Digital Systems</span>
+      </h1>
+      <div class="hero-sub-title">// Web System Apps · AI Solutions · Workflow Automation</div>
+      <p class="hero-desc">I'm <strong style="color:var(--white)">Benedict Donato</strong>, a Full Stack Developer and AI & Automation Specialist based in Manila, PH. I design intelligent web systems and automate complex workflows that help businesses scale faster and work smarter.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View My Work</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric">
+          <div class="metric-num">5<span>+</span></div>
+          <div class="metric-label">Years Exp.</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">23<span>+</span></div>
+          <div class="metric-label">Projects Done</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">95<span>%</span></div>
+          <div class="metric-label">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="profile-card">
+        <div class="profile-img-wrap">
+          <img src="./assets/img/portfolioben1.png" alt="Benedict Donato">
+          <div class="profile-img-overlay"></div>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Benedict "Ben" Donato</div>
+          <div class="profile-role">FULL STACK DEV · AI & AUTOMATION</div>
+          <div class="profile-tags">
+            <span class="profile-tag">PHP</span>
+            <span class="profile-tag">JavaScript</span>
+            <span class="profile-tag">Zapier</span>
+            <span class="profile-tag">MySQL</span>
+            <span class="profile-tag">AI</span>
+            <span class="profile-tag">Node.js</span>
+            <span class="profile-tag">CSS</span>
+            <span class="profile-tag">HTML</span>
+            <span class="profile-tag">API</span>
+          </div>
+          <div class="profile-location">Manila, Philippines</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee"></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">About Me</div>
+    <h2 class="sec-title">Who I Am</h2>
+    <div class="about-layout">
+      <div class="about-left">
+        <div class="about-card fade-up">
+          <div class="about-card-label">Personal Info</div>
+          <div class="info-rows">
+            <div class="info-row"><label>Full Name</label><p>Benedict Donato</p></div>
+            <div class="info-row"><label>Location</label><p>Manila, Philippines</p></div>
+            <div class="info-row"><label>Phone</label><p>+63 945-407-6428</p></div>
+            <div class="info-row"><label>Email</label><p>benetdonato@gmail.com</p></div>
+            <div class="info-row"><label>Degree</label><p>BS Computer Science</p></div>
+            <div class="info-row"><label>Status</label><p style="color:#22c55e;font-weight:600">Available ✓</p></div>
+          </div>
+        </div>
+        <div style="margin-top:16px">
+          <a href="https://docs.google.com/document/d/1e92xZDYkeOqNinPirxP-PXynj2WP648S_7imozzBIq8/edit?usp=sharing" target="_blank" class="btn-primary fade-up" style="display:block;text-align:center">Download Full CV</a>
+        </div>
+      </div>
+      <div class="about-right">
+        <p class="about-bio fade-up">
+  I'm a <strong>Full Stack Developer</strong> and <strong>AI &amp; Automation Specialist</strong> with 5+ years of experience building web applications, business systems, and AI-powered automation solutions for startups and growing businesses.
+</p>
+
+<p class="about-bio fade-up" style="margin-top:0">
+  I specialize in <strong>JavaScript</strong>, <strong>PHP</strong>, <strong>SQL</strong>, REST APIs, AI integrations, and advanced Zapier automations—creating scalable solutions that eliminate repetitive work, streamline operations, and drive business growth.
+</p>
+
+<p class="about-bio fade-up" style="margin-top:0">
+  As a former <strong>Zapier Technical Support Engineer</strong>, I combine technical expertise with a business-first mindset to deliver clean, reliable systems that solve real-world problems.
+</p>
+        <div class="skills-section fade-up">
+          <div class="skills-label">// Core Skills</div>
+          <div class="skill-item"><div class="skill-meta"><span class="skill-name">PHP</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+          <div class="skill-item"><div class="skill-meta"><span class="skill-name">Zapier Automation</span><span class="skill-pct">92%</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+          <div class="skill-item"><div class="skill-meta"><span class="skill-name">JavaScript</span><span class="skill-pct">86%</span></div><div class="skill-bar"><div class="skill-fill" style="width:86%"></div></div></div>
+          <div class="skill-item"><div class="skill-meta"><span class="skill-name">Web Development</span><span class="skill-pct">94%</span></div><div class="skill-bar"><div class="skill-fill" style="width:94%"></div></div></div>
+          <div class="skill-item"><div class="skill-meta"><span class="skill-name">HTML + CSS</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+          <div class="skill-item"><div class="skill-meta"><span class="skill-name">AI Integration</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">What I Do</div>
+    <h2 class="sec-title">Services</h2>
+    <p class="sec-sub">End-to-end solutions across full-stack development, AI integration, automation engineering, and IT infrastructure.</p>
+    <div class="services-grid">
+      <div class="svc fade-up">
+        <div class="svc-num">01</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3>Full Stack Development</h3>
+        <p>End-to-end web applications from database design to pixel-perfect frontends. PHP, MySQL, JavaScript, and modern frameworks — built for performance and scale.</p>
+        <div class="svc-arrow">↗</div>
+      </div>
+      <div class="svc fade-up">
+        <div class="svc-num">02</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="19" cy="5" r="3"/></svg></div>
+        <h3>AI Integration & Chatbots</h3>
+        <p>Embed AI into your existing systems — knowledge bots, customer assistants, automated summaries, and intelligent data processing powered by the latest LLMs.</p>
+        <div class="svc-arrow">↗</div>
+      </div>
+      <div class="svc fade-up">
+        <div class="svc-num">03</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3>Zapier Workflow Automation</h3>
+        <p>Design and optimize automated pipelines connecting your entire app ecosystem. Reduce manual work, eliminate errors, and scale operations without adding headcount.</p>
+        <div class="svc-arrow">↗</div>
+      </div>
+      <div class="svc fade-up">
+        <div class="svc-num">04</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M5 17l7-6M19 17l-7-6"/></svg></div>
+        <h3>IT Network Engineering</h3>
+        <p>Network infrastructure design and implementation — LAN/WAN, routers, switches, firewalls, and server configuration for reliable and secure operations.</p>
+        <div class="svc-arrow">↗</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Background</div>
+    <h2 class="sec-title">Experience & Education</h2>
+    <div class="exp-layout">
+      <div>
+        <div class="exp-col-head">Work History</div>
+        <div class="tl">
+          <div class="tl-item active fade-up">
+            <div class="tl-period">2021 — PRESENT</div>
+            <div class="tl-title">Full Stack Developer | AI & Automation Specialist</div>
+            <div class="tl-company">Ben Don™ Dev</div>
+            <div class="tl-body"><p>
+              Freelance Full Stack Developer and AI Automation Specialist delivering custom web applications, internal and external business systems, and AI-powered automation solutions. Build scalable software, integrate
+              third-party APIs, and create intelligent workflows with Zapier, n8n, and AI tools.</p></div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">April 2024 — July 2025</div>
+            <div class="tl-title">Zapier Technical Support Engineer</div>
+            <div class="tl-company">Zapier Automation</div>
+            <div class="tl-body">Troubleshoot, configure and optimize automated workflows at scale. Help enterprise clients build seamless multi-app integrations and resolve complex technical issues.</div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">2021</div>
+            <div class="tl-title">Website Developer</div>
+            <div class="tl-company">Kemecon Career Canada</div>
+            <div class="tl-body">Contract-based development and maintenance of a job posting and career platform.</div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">2019</div>
+            <div class="tl-title">Field IT Network Support Specialist</div>
+            <div class="tl-company">30th SEA Games Philippines</div>
+            <div class="tl-body">LAN/WAN implementation delivering real-time scores worldwide. Baseball event, New Clark City, Pampanga.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="exp-col-head">Education</div>
+        <div class="tl">
+          <div class="tl-item active fade-up">
+            <div class="tl-period">2017 — 2021</div>
+            <div class="tl-title">BS Computer Science — Information Technology</div>
+            <div class="tl-company">Arellano University</div>
+            <div class="tl-body">Graduated with a major in Information Technology. Strong foundation in algorithms, databases, networking and software engineering.</div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">2000 — 2004</div>
+            <div class="tl-title">Secondary Education</div>
+            <div class="tl-company">San Beda College</div>
+            <div class="tl-body">Passed NEAT Accreditation — DepEd.</div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">1994 — 2000</div>
+            <div class="tl-title">Primary Education</div>
+            <div class="tl-company">La Consolacion College</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack" class="section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Technologies</div>
+    <h2 class="sec-title">Tech Stack</h2>
+    <p class="sec-sub">Tools and technologies I use to build, automate, and deploy modern digital solutions.</p>
+    <div class="stack-cat fade-up">
+      <div class="stack-cat-label">// Languages & Backend</div>
+      <div class="stack-grid">
+        <div class="stack-item"><span class="stack-emoji">🐘</span><span class="stack-name">PHP</span></div>
+        <div class="stack-item"><span class="stack-emoji">🟢</span><span class="stack-name">Node.js</span></div>
+        <div class="stack-item"><span class="stack-emoji">🟨</span><span class="stack-name">JavaScript</span></div>
+        <div class="stack-item"><span class="stack-emoji">🌐</span><span class="stack-name">HTML &amp; CSS</span></div>
+        <div class="stack-item"><span class="stack-emoji">🐬</span><span class="stack-name">MySQL</span></div>
+        <div class="stack-item"><span class="stack-emoji">🔌</span><span class="stack-name">REST APIs</span></div>
+        <div class="stack-item"><span class="stack-emoji">⚡</span><span class="stack-name">WebSockets</span></div>
+      </div>
+    </div>
+    <div class="stack-cat fade-up">
+    <div class="stack-cat-label">// AI, Automation &amp; Integrations</div>
+    <div class="stack-grid">
+      <div class="stack-item"><span class="stack-emoji">⚡</span><span class="stack-name">Zapier</span></div>
+      <div class="stack-item"><span class="stack-emoji">🔄</span><span class="stack-name">n8n</span></div>
+      <div class="stack-item"><span class="stack-emoji">🤖</span><span class="stack-name">AI / LLM APIs</span></div>
+      <div class="stack-item"><span class="stack-emoji">🤖</span><span class="stack-name">OpenAI API</span></div>
+      <div class="stack-item"><span class="stack-emoji">🧠</span><span class="stack-name">Claude API</span></div>
+      <div class="stack-item"><span class="stack-emoji">📊</span><span class="stack-name">HubSpot</span></div>
+      <div class="stack-item"><span class="stack-emoji">🛒</span><span class="stack-name">Shopify</span></div>
+      <div class="stack-item"><span class="stack-emoji">💬</span><span class="stack-name">Slack API</span></div>
+      <div class="stack-item"><span class="stack-emoji">📧</span><span class="stack-name">Mailchimp</span></div>
+      <div class="stack-item"><span class="stack-emoji">🎫</span><span class="stack-name">Freshdesk</span></div>
+      <div class="stack-item"><span class="stack-emoji">💰</span><span class="stack-name">QuickBooks</span></div>
+    </div>
+    </div>
+    <div class="stack-cat fade-up">
+      <div class="stack-cat-label">// Development Tools &amp; Platforms</div>
+      <div class="stack-grid">
+        <div class="stack-item"><span class="stack-emoji">🔷</span><span class="stack-name">VS Code</span></div>
+        <div class="stack-item"><span class="stack-emoji">⚛️</span><span class="stack-name">Atom</span></div>
+        <div class="stack-item"><span class="stack-emoji">📝</span><span class="stack-name">Zed</span></div>
+        <div class="stack-item"><span class="stack-emoji">🐙</span><span class="stack-name">Git/GitHub</span></div>
+        <div class="stack-item"><span class="stack-emoji">📮</span><span class="stack-name">Postman</span></div>
+        <div class="stack-item"><span class="stack-emoji">🖥️</span><span class="stack-name">XAMPP</span></div>
+        <div class="stack-item"><span class="stack-emoji">🚀</span><span class="stack-name">Laragon</span></div>
+        <div class="stack-item"><span class="stack-emoji">🌐</span><span class="stack-name">Ngrok</span></div>
+        <div class="stack-item"><span class="stack-emoji">☁️</span><span class="stack-name">Hostinger</span></div>
+        <div class="stack-item"><span class="stack-emoji">🌎</span><span class="stack-name">GoDaddy</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Featured Work</div>
+    <h2 class="sec-title">Projects & Systems</h2>
+    <p class="sec-sub">Real-world web applications, AI tools, and automation systems built to solve business problems.</p>
+    <div class="projects-grid">
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/leadportal.jpg" alt="Praesidium Leads Portal">
+            <div class="proj-badge">ENTERPRISE CRM / LEAD MANAGEMENT</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                Praesidium – Fully Customized Leads Portal & Monitoring System
+            </div>
+
+            <div class="proj-desc">
+                Enterprise-grade Lead Management and Operations Monitoring System designed for startup and medium-sized <strong>chat-based lead generation operations</strong>. Praesidium replaces fragmented Excel spreadsheets and manual workflows with a centralized platform for lead submissions, duplicate detection, real-time team monitoring, executive reporting, performance analytics, and secure role-based access across office-based and Work-From-Home (WFH) environments.
+            </div>
+
+            <div class="proj-stack">
+                <span>PHP</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>SQL</span>
+                <span>AJAX</span>
+                <span>WebSockets</span>
+                <span>REST API</span>
+                <span>Laragon</span>
+                <span>Ngrok</span>
+                <span>Postman</span>
+                <span>Zed</span>
+            </div>
+
+                <div class="proj-result">
+                    <strong>Case Study:</strong> Praesidium was built to modernize lead management for startup and medium-sized chat-based lead generation operations that previously relied on Excel spreadsheets, Gmail Chat, Telegram etc, and manual monitoring. Agents generate leads from LinkedIn, Facebook, Reddit, Telegram, and other social media platforms, while Team Leaders review submissions, verify conversations, monitor productivity, and eliminate duplicate entries through a centralized workflow. Executives, including CEOs and Account Managers, gain real-time visibility through operational dashboards, weekly and monthly performance reports, KPI tracking, and productivity analytics to support data-driven decision-making. IT Administrators maintain system integrity through role-based access control, user management, audit logs, and secure authentication. A <strong>sample deployment processing more than 71,000+ lead records</strong> demonstrates the platform's ability to deliver reliable performance, maintain data quality, prevent duplicate submissions, and scale efficiently for high-volume enterprise lead generation operations.
+                </div>
+
+            <a href="https://drive.google.com/file/d/1_jbyysXTERuGdxJmP8Tr4LTan8Fvnqgj/view?usp=sharing"
+               target="_blank"
+               class="proj-link">
+                VIEW SYSTEM DEMO VIDEO →
+            </a>
+        </div>
+    </div>
+
+    <div class="proj fade-up">
+      <div class="proj-img">
+        <img src="./assets/img/smart-hiring-ai.jpg" alt="Smart Hiring Portal AI System">
+        <div class="proj-badge">AI / HR AUTOMATION</div>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-title">
+          Smart Hiring Portal AI System MVP
+        </div>
+
+        <div class="proj-desc">
+          AI-powered predictive recruitment platform designed to modernize hiring workflows by combining a customized applicant portal, HR administration dashboard, and AI hiring assistant. The system analyzes applicant profiles, evaluates candidate information, and provides predictive hiring insights to help HR teams identify potential strengths, neutral indicators, and possible hiring risks.
+        </div>
+
+        <div class="proj-stack">
+          <span>PHP</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>SQL</span>
+          <span>Zapier</span>
+          <span>Predictive AI</span>
+          <span>AI Integration</span>
+          <span>Ngrok</span>
+          <span>Postman</span>
+          <span>Zed</span>
+          <span>Laragon</span>
+        </div>
+
+        <div class="proj-result">
+          <strong>Case Study:</strong> Traditional recruitment processes require HR teams to manually review large volumes of applicant profiles, compare qualifications, and determine candidate suitability. This creates delays, inconsistent evaluations, and increased workload during high-volume hiring periods.
+
+          Smart Hiring Portal AI System was developed to streamline the recruitment process by creating a centralized platform where applicants submit their information, HR teams manage candidate pipelines, and AI-assisted analysis provides additional insights during evaluation.
+
+          The system integrates an applicant-facing hiring portal, HR management dashboard, and predictive AI assistant that analyzes candidate profiles based on configured evaluation criteria. HR personnel can quickly identify promising candidates, review potential concerns, and make more informed decisions while maintaining human oversight throughout the hiring process.
+
+          By reducing applicant screening time from 10–15 minutes to approximately 2 minutes or less, the platform improves recruitment efficiency, minimizes repetitive manual review, and enables organizations to handle larger applicant volumes with better consistency and data-driven insights.
+        </div>
+
+        <a href="https://drive.google.com/file/d/19vZ8Cb5MvVmCXxC8Q6SlJ2gL_rury5nj/view?usp=sharing"
+           target="_blank"
+           class="proj-link">
+           VIEW SYSTEM DEMO VIDEO →
+        </a>
+      </div>
+    </div>
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/talkingbot.jpg" alt="Ben Automated Talking AI Assistant">
+            <div class="proj-badge">AI / AUTOMATION / CHATBOT</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                Ben – Automated Talking AI Assistant MVP
+            </div>
+
+            <div class="proj-desc">
+                AI-powered conversational assistant MVP designed to automate user interactions, answer knowledge-based questions, and provide an extensible foundation for customer support, internal assistance, and web-based AI applications. The system combines a customized web interface, webhook automation, and AI integration to create an interactive assistant capable of processing user requests and delivering automated responses.
+            </div>
+
+            <div class="proj-stack">
+                <span>PHP</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Webhook Integration</span>
+                <span>Zapier</span>
+                <span>Postman</span>
+                <span>Ngrok</span>
+                <span>XAMPP</span>
+                <span>Atom</span>
+                <span>AI Integration</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Case Study:</strong> Many businesses require automated assistants to handle repetitive questions, provide instant responses, and reduce dependency on manual support channels. Traditional FAQ systems are often limited because they rely on static information and cannot adapt to changing user interactions.
+
+                Ben Automated Talking AI Assistant was developed as an MVP solution to demonstrate how AI-powered conversational systems can improve user engagement through automated question handling and knowledge-based responses. The system receives user interactions, processes requests through webhook-based automation, and provides intelligent responses while maintaining the ability to expand with additional business knowledge and workflows.
+
+                The platform was designed with future scalability in mind, allowing integration with websites, web applications, customer support platforms, and internal company systems. It serves as a foundation for developing more advanced AI assistants capable of supporting end users, automating business inquiries, and improving operational efficiency.
+            </div>
+
+            <a href="https://drive.google.com/file/d/1toti2TFWY-oWlsCcTd0PsMjuktsEk52t/view?usp=sharing"
+               target="_blank"
+               class="proj-link">
+                VIEW SYSTEM DEMO VIDEO →
+            </a>
+        </div>
+    </div>
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/cleaning-booking-ai.jpg" alt="AI Powered Cleaners Booking System">
+            <div class="proj-badge">AI / AUTOMATION / TASK MANAGEMENT</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                Cleaners Booking System – AI Powered Dispatching & Task Management Platform
+            </div>
+
+            <div class="proj-desc">
+                AI-powered cleaning service management platform designed to automate customer bookings, service request processing, task summarization, and cleaner dispatch workflows. The system transforms customer-provided cleaning requirements into structured task information, helping businesses reduce manual coordination and improve operational efficiency between customers, managers, and cleaning teams.
+            </div>
+
+            <div class="proj-stack">
+                <span>PHP</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>SQL</span>
+                <span>Zapier</span>
+                <span>Connecteam Integration</span>
+                <span>Postman</span>
+                <span>Ngrok</span>
+                <span>XAMPP</span>
+                <span>Atom</span>
+                <span>AI Integration</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Case Study:</strong> An Australian cleaning business was managing service requests through a semi-manual workflow using Connecteam and manual task dispatching. Customer cleaning requirements were collected, reviewed, summarized, and manually assigned to cleaning staff, creating additional administrative workload and increasing the possibility of communication gaps.
+
+                The Cleaners Booking System was developed to automate this process by capturing customer service requests, organizing cleaning requirements, and using AI to generate structured task summaries for faster dispatching and clearer instructions for cleaning teams.
+
+                Through automation and Connecteam integration, managers can reduce repetitive administrative tasks, improve communication between customers and cleaners, and create a more efficient workflow from booking submission to task completion. The system provides a scalable foundation for cleaning businesses looking to modernize operations through AI-powered automation and intelligent task management.
+            </div>
+
+            <a href="https://drive.google.com/file/d/1VZXkOyrVy6Rla5kxqzokPSDYjxWsYdcP/view?usp=sharing" target="_blank" class="proj-link">
+                VIEW SYSTEM DEMO VIDEO →
+            </a>
+        </div>
+    </div>
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/SlackAI.jpg" alt="AI Slack Auto Answering Bot">
+            <div class="proj-badge">AI / INTERNAL SUPPORT AUTOMATION</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                AI Internal Support Assistant – Slack Auto Answering Bot MVP
+            </div>
+
+            <div class="proj-desc">
+                AI-powered internal support assistant designed to help organizations automate employee inquiries, retrieve internal information, and improve team communication through Slack. The system acts as an intelligent workplace assistant capable of answering common questions, maintaining conversation history, and supporting internal operations such as attendance, leave tracking, and task management.
+            </div>
+
+            <div class="proj-stack">
+                <span>Zapier AI</span>
+                <span>Zapier Agent</span>
+                <span>JavaScript</span>
+                <span>Slack Integration</span>
+                <span>Google Sheets</span>
+                <span>API Integration</span>
+                <span>Automation Workflow</span>
+                <span>Filters & Paths</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Case Study:</strong> Many organizations rely on internal support teams, HR personnel, and managers to repeatedly answer common employee questions related to company processes, attendance, leave requests, task updates, and operational information. This creates repetitive workload and slows down access to important information.
+
+                The AI Internal Support Assistant was developed as an MVP solution to provide automated workplace assistance directly inside Slack. Employees can interact with the AI bot to receive instant responses, while the system stores previous conversations and utilizes connected data sources to improve response accuracy and maintain organizational knowledge.
+
+                The platform demonstrates how AI automation can support internal business operations by reducing repetitive inquiries, improving information accessibility, and creating a scalable foundation for AI-powered employee assistance. It can be extended for HR support, IT helpdesk automation, onboarding assistance, knowledge management, and internal workflow automation.
+            </div>
+
+            <a href="https://drive.google.com/file/d/1Qw58XG624u27j3iRk2EH_NYcD_qCAAXW/view?usp=sharing"
+               target="_blank"
+               class="proj-link">
+                VIEW SYSTEM DEMO VIDEO →
+            </a>
+        </div>
+    </div>
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/routing.jpg" alt="BPO Contact Form Ticketing System">
+            <div class="proj-badge">SUPPORT AUTOMATION / TICKETING SYSTEM</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                BPO Contact Form Ticketing & Smart Routing System MVP
+            </div>
+
+            <div class="proj-desc">
+                Web-based customer support ticketing platform designed to streamline support request intake, automate ticket routing, and improve communication between customers and support teams. The system captures customer concerns through a centralized contact form, automatically processes requests, and routes tickets to the appropriate support channels using workflow automation.
+            </div>
+
+            <div class="proj-stack">
+                <span>PHP</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>SQL</span>
+                <span>Zapier Webhooks</span>
+                <span>Freshdesk Integration</span>
+                <span>Slack Integration</span>
+                <span>Google Sheets</span>
+                <span>Gmail Integration</span>
+                <span>API Automation</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Case Study:</strong> Customer support operations often receive requests from multiple channels, requiring teams to manually review inquiries, categorize concerns, and forward tickets to the correct department. This manual process can cause delays, inconsistent routing, and additional workload for support teams.
+
+                The BPO Contact Form Ticketing System was developed to centralize customer inquiries through a structured web-based form and automate the support workflow. Submitted requests are processed through webhook automation, routed to the appropriate support channels, and integrated with platforms such as Freshdesk, Slack, Gmail, and Google Sheets for improved visibility and collaboration.
+
+                The system demonstrates how workflow automation can improve BPO and customer service operations by reducing manual ticket handling, accelerating response times, and creating a scalable support infrastructure that can adapt to growing customer service requirements.
+            </div>
+
+            <a href="https://drive.google.com/file/d/1DgI38mgYjGkvNP9c8H7Id37LqxW8erZb/view?usp=sharing"
+               target="_blank"
+               class="proj-link">
+                VIEW SYSTEM DEMO VIDEO →
+            </a>
+        </div>
+    </div>
+<!--
+      <div class="proj fade-up">
+        <div class="proj-img"><img src="./assets/img/work/martha.jpg" alt="CEO Dashboard"><div class="proj-badge">DASHBOARD</div></div>
+        <div class="proj-body">
+          <div class="proj-title">CEO & Team Management Platform</div>
+          <div class="proj-desc">Centralized business dashboard for project tracking, task management, KPIs, employee updates, and company resources.</div>
+          <div class="proj-stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>Chart.js</span><span>AI Ready</span></div>
+          <div class="proj-result">// Single source of truth that unified operations for the entire company.</div>
+        </div>
+      </div>
+      <div class="proj fade-up">
+        <div class="proj-img"><img src="./assets/img/work/routing.jpg" alt="BPO Platform"><div class="proj-badge">TICKETING</div></div>
+        <div class="proj-body">
+          <div class="proj-title">BPO Contact & Routing Platform</div>
+          <div class="proj-desc">Intelligent contact system with smart ticket routing for support, sales, and customer success teams in a BPO environment.</div>
+          <div class="proj-stack"><span>PHP</span><span>Freshdesk</span><span>Zapier</span><span>Slack</span><span>Gmail</span></div>
+          <div class="proj-result">// Improved ticket visibility and dramatically cut average response time.</div>
+        </div>
+      </div>
+ -->
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Credentials</div>
+    <h2 class="sec-title">AI & Automation Certifications</h2>
+    <p class="sec-sub">Professional certifications validating my expertise in development, automation, and AI. Click any certificate to zoom in.</p>
+    <div class="certs-grid">
+
+      <div class="cert-card fade-up" onclick="openLightbox('./assets/img/anthropic1.jpg','Anthropic Academy')">
+        <div class="cert-img-wrap">
+          <img src="./assets/img/anthropic1.jpg" alt="Anthropic Certificate">
+          <div class="cert-zoom-icon">🔍</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">Anthropic</div>
+          <div class="cert-name">Claude API Certification</div>
+          <div class="cert-date">Issued 2025</div>
+        </div>
+      </div>
+
+
+      <div class="cert-card fade-up" onclick="openLightbox('./assets/img/anthropic2.jpg','Anthropic Academy')">
+        <div class="cert-img-wrap">
+          <img src="./assets/img/anthropic2.jpg" alt="Anthropic Certificate">
+          <div class="cert-zoom-icon">🔍</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">Anthropic</div>
+          <div class="cert-name">AI Fluency: Framework &amp; Foundations</div>
+          <div class="cert-date">Issued 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card fade-up" onclick="openLightbox('./assets/img/anthropic3.jpg','Anthropic Academy')">
+        <div class="cert-img-wrap">
+          <img src="./assets/img/anthropic3.jpg" alt="Anthropic Certificate">
+          <div class="cert-zoom-icon">🔍</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">Anthropic</div>
+          <div class="cert-name">AI Fluency for Builders</div>
+          <div class="cert-date">Issued 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card fade-up" onclick="openLightbox('./assets/img/openai1.jpg','OpenAI Academy')">
+        <div class="cert-img-wrap">
+          <img src="./assets/img/openai1.jpg" alt="OpenAI Academy">
+          <div class="cert-zoom-icon">🔍</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">OpenAI Academy</div>
+          <div class="cert-name">OpenAI Foundations</div>
+          <div class="cert-date">Issued 2026</div>
+        </div>
+      </div>
+
+      <div class="cert-card fade-up" onclick="openLightbox('./assets/img/openai2.jpg','OpenAI Academy')">
+        <div class="cert-img-wrap">
+          <img src="./assets/img/openai2.jpg" alt="OpenAI Academy">
+          <div class="cert-zoom-icon">🔍</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">OpenAI Academy</div>
+          <div class="cert-name">Applied AI Foundations</div>
+          <div class="cert-date">Issued 2026</div>
+        </div>
+      </div>
+
+      <div class="cert-card fade-up" onclick="openLightbox('./assets/img/openai2.jpg','OpenAI Academy')">
+        <div class="cert-img-wrap">
+          <img src="./assets/img/openai3.jpg" alt="OpenAI Academy">
+          <div class="cert-zoom-icon">🔍</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">OpenAI Academy</div>
+          <div class="cert-name">Agents and Workflows</div>
+          <div class="cert-date">Issued 2026</div>
+        </div>
+      </div>
+
+      <div class="cert-card fade-up" onclick="openLightbox('./assets/img/zapier1.jpg','Zapier Learn')">
+        <div class="cert-img-wrap">
+          <img src="./assets/img/zapier1.jpg" alt="Zapier">
+          <div class="cert-zoom-icon">🔍</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">Zapier Certificate</div>
+          <div class="cert-name">Enhancing Zaps</div>
+          <div class="cert-date">Issued 2024</div>
+        </div>
+      </div>
+
+      <div class="cert-card fade-up" onclick="openLightbox('./assets/img/zapier2.jpg','Zapier Learn')">
+        <div class="cert-img-wrap">
+          <img src="./assets/img/zapier2.jpg" alt="Zapier">
+          <div class="cert-zoom-icon">🔍</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">Zapier Certificate</div>
+          <div class="cert-name">Troubleshooting Zaps</div>
+          <div class="cert-date">Issued 2024</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner" style="max-width:1300px;margin:0 auto">
+    <div class="contact-layout">
+      <div class="contact-left">
+        <div class="sec-eyebrow">Get In Touch</div>
+        <h2 class="sec-title">Let's Build Something Great</h2>
+        <p class="sec-sub">Have a project in mind, a workflow to automate, or just want to connect? I'm open to freelance work, full-time roles, and interesting collaborations.</p>
+        <div class="contact-info">
+          <div class="cinfo"><div class="cinfo-icon">📧</div><div><span class="cinfo-label">Email</span><span class="cinfo-val">benetdonato@gmail.com</span></div></div>
+          <div class="cinfo"><div class="cinfo-icon">📱</div><div><span class="cinfo-label">Phone</span><span class="cinfo-val">+63 945-407-6428</span></div></div>
+          <div class="cinfo"><div class="cinfo-icon">📍</div><div><span class="cinfo-label">Location</span><span class="cinfo-val">Manila, Philippines</span></div></div>
+        </div>
+      </div>
+      <div class="contact-right fade-up">
+        <div class="contact-form">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="">
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" placeholder="Project Inquiry / Automation Help">
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="5" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button class="form-submit">SEND MESSAGE →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo-box">BD</div>
+    <div class="footer-name">Benedict Donato</div>
+  </div>
+  <p>©2021 Ben Don™. Full Stack Developer | AI & Automation Specialist.</p>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Marquee
+const techs=['PHP','JavaScript','Node.js','MySQL','Zapier','AI / LLMs','HubSpot','Shopify','Slack API','Freshdesk','QuickBooks','Xampp','Laragon','Zed','VS','Postman','HTML / CSS','Git','n8n','Hostinger','Atom','Full Stack Dev','Automation','GoDaddy'];
+const m=document.getElementById('marquee');
+const items=techs.map(t=>`<div class="marquee-item"><span class="marquee-dot"></span>${t}</div>`).join('');
+m.innerHTML=items+items;
+
+// Scroll fade-in
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+// Nav active link
+const sections=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.nav-links a');
+const navObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.style.color='');
+      const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(a)a.style.color='var(--text)';
+    }
+  });
+},{threshold:.3});
+sections.forEach(s=>navObs.observe(s));
+
+// Skill bar animation
+const skillObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.skill-fill').forEach(bar=>{
+        const w=bar.style.width;bar.style.width='0';
+        setTimeout(()=>bar.style.width=w,100);
+      });
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.skills-section').forEach(s=>skillObs.observe(s));
+
+// Contact form (frontend only — connect to backend as needed)
+document.querySelector('.form-submit').addEventListener('click',()=>{
+  const btn=document.querySelector('.form-submit');
+  btn.textContent='MESSAGE SENT ✓';
+  btn.style.background='linear-gradient(135deg,#16a34a,#15803d)';
+  setTimeout(()=>{
+    btn.textContent='SEND MESSAGE →';
+    btn.style.background='';
+  },3000);
+});
+
+// Lightbox
+function openLightbox(src, caption){
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-caption').textContent = caption;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
