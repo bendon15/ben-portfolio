@@ -118,12 +118,12 @@ nav{
   background:radial-gradient(circle,rgba(30,107,245,.1) 0%,transparent 70%);
   top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
 }
-#atom-canvas{
+#particle-canvas{
   position:absolute;inset:0;width:100%;height:100%;
   display:block;pointer-events:none;opacity:0;
   transition:opacity 1.2s ease;
 }
-#atom-canvas.loaded{opacity:1}
+#particle-canvas.loaded{opacity:1}
 .hero-inner{
   position:relative;z-index:1;
   display:grid;grid-template-columns:1fr 420px;gap:80px;
@@ -384,29 +384,41 @@ nav{
 
 /* ── TECH STACK ── */
 #stack{background:var(--bg)}
-.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.stack-cats{display:flex;flex-direction:column}
+.stack-cat{padding:28px 0;border-bottom:1px solid var(--border)}
+.stack-cat:first-child{padding-top:6px}
+.stack-cat:last-child{border-bottom:none;padding-bottom:0}
+.stack-cat-head{
+  display:flex;align-items:center;gap:14px;margin-bottom:20px;
+}
+.stack-cat-index{
+  font-family:var(--mono);font-size:.7rem;font-weight:700;color:var(--blue3);
+  border:1px solid var(--border2);border-radius:4px;
+  padding:3px 8px;letter-spacing:.05em;flex-shrink:0;
+}
+.stack-cat-label{
+  font-family:var(--mono);font-size:.78rem;color:var(--text);
+  text-transform:uppercase;letter-spacing:.1em;font-weight:600;
+  white-space:nowrap;
+}
+.stack-cat-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.stack-cat-count{
+  font-family:var(--mono);font-size:.68rem;color:var(--muted);
+  letter-spacing:.05em;flex-shrink:0;
+}
+.stack-grid{display:flex;flex-wrap:wrap;gap:10px}
 .stack-item{
   background:var(--card);border:1px solid var(--border);
-  border-left:2px solid var(--border2);
-  border-radius:6px;padding:14px 16px;text-align:left;
-  display:flex;align-items:center;
-  transition:border-color .25s,transform .25s,box-shadow .25s,background .25s;
+  border-radius:6px;padding:9px 16px;
+  font-family:var(--mono);font-size:.75rem;color:var(--text2);font-weight:500;
+  letter-spacing:.02em;line-height:1;
+  transition:border-color .25s,transform .25s,box-shadow .25s,color .25s,background .25s;
   cursor:default;
 }
 .stack-item:hover{
-  border-color:var(--blue);border-left-color:var(--blue);
+  border-color:var(--blue);color:var(--white);
   background:var(--card2);transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(30,107,245,.1);
-}
-.stack-name{font-family:var(--mono);font-size:.72rem;color:var(--text2);font-weight:500;letter-spacing:.03em}
-.stack-item:hover .stack-name{color:var(--text)}
-.stack-cat{
-  margin-bottom:32px;
-}
-.stack-cat-label{
-  font-family:var(--mono);font-size:.65rem;color:var(--muted);
-  text-transform:uppercase;letter-spacing:.12em;
-  margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(30,107,245,.14);
 }
 
 /* ── PROJECTS ── */
@@ -655,7 +667,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
 <section id="home">
   <div class="hero-bg-grid"></div>
   <div class="hero-glow"></div>
-  <canvas id="atom-canvas"></canvas>
+  <canvas id="particle-canvas"></canvas>
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-chip">Full Stack Developer · AI & Automation Specialist</div>
@@ -794,7 +806,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
       <div class="svc fade-up">
         <div class="svc-num">04</div>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M5 17l7-6M19 17l-7-6"/></svg></div>
-        <h3>IT Network Engineering</h3>
+        <h3>IT Network</h3>
         <p>Network infrastructure design and implementation — LAN/WAN, routers, switches, firewalls, and server configuration for reliable and secure operations.</p>
         <div class="svc-arrow">↗</div>
       </div>
@@ -871,48 +883,68 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
     <div class="sec-eyebrow">Technologies</div>
     <h2 class="sec-title">Tech Stack</h2>
     <p class="sec-sub">Tools and technologies I use to build, automate, and deploy modern digital solutions.</p>
-    <div class="stack-cat fade-up">
-      <div class="stack-cat-label">// Languages & Backend</div>
-      <div class="stack-grid">
-        <div class="stack-item"><span class="stack-name">PHP</span></div>
-        <div class="stack-item"><span class="stack-name">Node.js</span></div>
-        <div class="stack-item"><span class="stack-name">JavaScript</span></div>
-        <div class="stack-item"><span class="stack-name">HTML &amp; CSS</span></div>
-        <div class="stack-item"><span class="stack-name">MySQL</span></div>
-        <div class="stack-item"><span class="stack-name">REST APIs</span></div>
-        <div class="stack-item"><span class="stack-name">WebSockets</span></div>
-         <div class="stack-item"><span class="stack-name">AJAX</span></div>
+
+    <div class="stack-cats">
+      <div class="stack-cat fade-up">
+        <div class="stack-cat-head">
+          <span class="stack-cat-index">~</span>
+          <span class="stack-cat-label">Languages &amp; Backend</span>
+          <span class="stack-cat-line"></span>
+          <span class="stack-cat-count"></span>
+        </div>
+        <div class="stack-grid">
+          <span class="stack-item">PHP</span>
+          <span class="stack-item">Node.js</span>
+          <span class="stack-item">JavaScript</span>
+          <span class="stack-item">HTML &amp; CSS</span>
+          <span class="stack-item">MySQL</span>
+          <span class="stack-item">REST APIs</span>
+          <span class="stack-item">WebSockets</span>
+          <span class="stack-item">AJAX</span>
+        </div>
       </div>
-    </div>
-    <div class="stack-cat fade-up">
-    <div class="stack-cat-label">// AI, Automation &amp; Integrations</div>
-    <div class="stack-grid">
-      <div class="stack-item"><span class="stack-name">Zapier</span></div>
-      <div class="stack-item"><span class="stack-name">n8n</span></div>
-      <div class="stack-item"><span class="stack-name">AI / LLM APIs</span></div>
-      <div class="stack-item"><span class="stack-name">OpenAI API</span></div>
-      <div class="stack-item"><span class="stack-name">Claude API</span></div>
-      <div class="stack-item"><span class="stack-name">HubSpot</span></div>
-      <div class="stack-item"><span class="stack-name">Shopify</span></div>
-      <div class="stack-item"><span class="stack-name">Slack API</span></div>
-      <div class="stack-item"><span class="stack-name">Mailchimp</span></div>
-      <div class="stack-item"><span class="stack-name">Freshdesk</span></div>
-      <div class="stack-item"><span class="stack-name">QuickBooks</span></div>
-    </div>
-    </div>
-    <div class="stack-cat fade-up">
-      <div class="stack-cat-label">// Development Tools &amp; Platforms</div>
-      <div class="stack-grid">
-        <div class="stack-item"><span class="stack-name">VS Code</span></div>
-        <div class="stack-item"><span class="stack-name">Atom</span></div>
-        <div class="stack-item"><span class="stack-name">Zed</span></div>
-        <div class="stack-item"><span class="stack-name">Git/GitHub</span></div>
-        <div class="stack-item"><span class="stack-name">Postman</span></div>
-        <div class="stack-item"><span class="stack-name">XAMPP</span></div>
-        <div class="stack-item"><span class="stack-name">Laragon</span></div>
-        <div class="stack-item"><span class="stack-name">Ngrok</span></div>
-        <div class="stack-item"><span class="stack-name">Hostinger</span></div>
-        <div class="stack-item"><span class="stack-name">GoDaddy</span></div>
+
+      <div class="stack-cat fade-up">
+        <div class="stack-cat-head">
+          <span class="stack-cat-index">~</span>
+          <span class="stack-cat-label">AI, Automation &amp; Integrations</span>
+          <span class="stack-cat-line"></span>
+          <span class="stack-cat-count"></span>
+        </div>
+        <div class="stack-grid">
+          <span class="stack-item">Zapier</span>
+          <span class="stack-item">n8n</span>
+          <span class="stack-item">AI / LLM APIs</span>
+          <span class="stack-item">OpenAI API</span>
+          <span class="stack-item">Claude API</span>
+          <span class="stack-item">HubSpot</span>
+          <span class="stack-item">Shopify</span>
+          <span class="stack-item">Slack API</span>
+          <span class="stack-item">Mailchimp</span>
+          <span class="stack-item">Freshdesk</span>
+          <span class="stack-item">QuickBooks</span>
+        </div>
+      </div>
+
+      <div class="stack-cat fade-up">
+        <div class="stack-cat-head">
+          <span class="stack-cat-index">~</span>
+          <span class="stack-cat-label">Development Tools &amp; Platforms</span>
+          <span class="stack-cat-line"></span>
+          <span class="stack-cat-count"></span>
+        </div>
+        <div class="stack-grid">
+          <span class="stack-item">VS Code</span>
+          <span class="stack-item">Atom</span>
+          <span class="stack-item">Zed</span>
+          <span class="stack-item">Git/GitHub</span>
+          <span class="stack-item">Postman</span>
+          <span class="stack-item">XAMPP</span>
+          <span class="stack-item">Laragon</span>
+          <span class="stack-item">Ngrok</span>
+          <span class="stack-item">Hostinger</span>
+          <span class="stack-item">GoDaddy</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1531,9 +1563,9 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// ── 3D ATOM HERO BACKGROUND ──
-(function initAtom(){
-  const canvas = document.getElementById('atom-canvas');
+// ── FLYING PARTICLE SWARM HERO BACKGROUND ──
+(function initParticleSwarm(){
+  const canvas = document.getElementById('particle-canvas');
   if(!canvas || typeof THREE === 'undefined') return;
   const heroSection = document.getElementById('home');
 
@@ -1545,55 +1577,56 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
 
-  const atomGroup = new THREE.Group();
-  scene.add(atomGroup);
+  const swarmGroup = new THREE.Group();
+  scene.add(swarmGroup);
 
-  // Nucleus
-  const nucleusGeo = new THREE.IcosahedronGeometry(3.1, 2);
-  const nucleusMat = new THREE.MeshBasicMaterial({color:0x1e6bf5, wireframe:true, transparent:true, opacity:.55});
-  const nucleus = new THREE.Mesh(nucleusGeo, nucleusMat);
-  atomGroup.add(nucleus);
+  const COUNT = 170;
+  const bounds = {x:26, y:18, z:14};
+  const particles = [];
+  const positions = new Float32Array(COUNT*3);
+  const colors = new Float32Array(COUNT*3);
 
-  const nucleusCoreGeo = new THREE.IcosahedronGeometry(1.6, 1);
-  const nucleusCoreMat = new THREE.MeshBasicMaterial({color:0x06d6f7, wireframe:true, transparent:true, opacity:.35});
-  atomGroup.add(new THREE.Mesh(nucleusCoreGeo, nucleusCoreMat));
+  const colorA = new THREE.Color(0x1e6bf5);
+  const colorB = new THREE.Color(0x06d6f7);
 
-  // Orbit rings + electrons
-  const orbitColors = [0x1e6bf5, 0x4d8fff, 0x06d6f7];
-  const orbits = [];
-  const electrons = [];
-  const radii = [9, 12, 15];
+  for(let i=0;i<COUNT;i++){
+    const x = (Math.random()-.5)*bounds.x*2;
+    const y = (Math.random()-.5)*bounds.y*2;
+    const z = (Math.random()-.5)*bounds.z*2 - 6;
+    positions[i*3]=x; positions[i*3+1]=y; positions[i*3+2]=z;
 
-  radii.forEach((r,i)=>{
-    const ringGeo = new THREE.TorusGeometry(r, 0.03, 8, 100);
-    const ringMat = new THREE.MeshBasicMaterial({color:orbitColors[i%orbitColors.length], transparent:true, opacity:.28});
-    const ring = new THREE.Mesh(ringGeo, ringMat);
-    ring.rotation.x = Math.PI/2 + i*0.9;
-    ring.rotation.y = i*0.6;
-    atomGroup.add(ring);
-    orbits.push(ring);
+    const c = colorA.clone().lerp(colorB, Math.random());
+    colors[i*3]=c.r; colors[i*3+1]=c.g; colors[i*3+2]=c.b;
 
-    const elGeo = new THREE.SphereGeometry(0.34, 16, 16);
-    const elMat = new THREE.MeshBasicMaterial({color:orbitColors[i%orbitColors.length]});
-    const electron = new THREE.Mesh(elGeo, elMat);
-    atomGroup.add(electron);
-    electrons.push({mesh:electron, radius:r, speed:.35 + i*.18, offset:i*2.1, ring});
-  });
-
-  // Sparse ambient points
-  const starCount = 120;
-  const starGeo = new THREE.BufferGeometry();
-  const starPos = new Float32Array(starCount*3);
-  for(let i=0;i<starCount;i++){
-    starPos[i*3] = (Math.random()-.5)*70;
-    starPos[i*3+1] = (Math.random()-.5)*50;
-    starPos[i*3+2] = (Math.random()-.5)*40 - 10;
+    particles.push({
+      base: new THREE.Vector3(x,y,z),
+      speed: .18 + Math.random()*.3,
+      offset: Math.random()*Math.PI*2,
+      amp: new THREE.Vector3(1.5+Math.random()*2.2, 1.5+Math.random()*2.2, 1+Math.random()*1.5),
+      drift: new THREE.Vector3((Math.random()-.5)*.5, (Math.random()-.5)*.5, (Math.random()-.5)*.3)
+    });
   }
-  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos,3));
-  const starMat = new THREE.PointsMaterial({color:0x4d8fff, size:.18, transparent:true, opacity:.5});
-  scene.add(new THREE.Points(starGeo, starMat));
 
-  atomGroup.position.x = heroSection.clientWidth > 900 ? 9 : 0;
+  const particleGeo = new THREE.BufferGeometry();
+  particleGeo.setAttribute('position', new THREE.BufferAttribute(positions,3));
+  particleGeo.setAttribute('color', new THREE.BufferAttribute(colors,3));
+  const particleMat = new THREE.PointsMaterial({
+    size:.5, vertexColors:true, transparent:true, opacity:.9,
+    blending:THREE.AdditiveBlending, depthWrite:false, sizeAttenuation:true
+  });
+  swarmGroup.add(new THREE.Points(particleGeo, particleMat));
+
+  // Constellation-style connecting lines between nearby particles
+  const MAX_DIST = 6.8;
+  const MAX_LINES = COUNT*5;
+  const linePositions = new Float32Array(MAX_LINES*2*3);
+  const lineGeo = new THREE.BufferGeometry();
+  lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions,3));
+  const lineMat = new THREE.LineBasicMaterial({color:0x1e6bf5, transparent:true, opacity:.16, blending:THREE.AdditiveBlending});
+  const lines = new THREE.LineSegments(lineGeo, lineMat);
+  swarmGroup.add(lines);
+
+  swarmGroup.position.x = heroSection.clientWidth > 900 ? 9 : 0;
 
   let mouseX = 0, mouseY = 0;
   heroSection.addEventListener('mousemove', e=>{
@@ -1603,24 +1636,60 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
   });
 
   const clock = new THREE.Clock();
+  const posAttr = particleGeo.attributes.position;
+  const linePosAttr = lineGeo.attributes.position;
+
   function animate(){
     requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
 
-    atomGroup.rotation.y += 0.0022;
-    atomGroup.rotation.x = Math.sin(t*.15)*.15;
+    for(let i=0;i<COUNT;i++){
+      const p = particles[i];
+      const a = t*p.speed + p.offset;
+      let x = p.base.x + Math.sin(a)*p.amp.x + p.drift.x*t;
+      let y = p.base.y + Math.cos(a*0.8)*p.amp.y + p.drift.y*t;
+      const z = p.base.z + Math.sin(a*0.6)*p.amp.z + p.drift.z*t;
 
-    electrons.forEach(e=>{
-      const a = t*e.speed + e.offset;
-      const localX = Math.cos(a)*e.radius;
-      const localZ = Math.sin(a)*e.radius;
-      const tiltVec = new THREE.Vector3(localX,0,localZ).applyEuler(e.ring.rotation);
-      e.mesh.position.set(tiltVec.x, tiltVec.y, tiltVec.z);
-    });
+      // wrap drifting particles back into view for a continuous flying feel
+      x = ((x + bounds.x) % (bounds.x*2) + bounds.x*2) % (bounds.x*2) - bounds.x;
+      y = ((y + bounds.y) % (bounds.y*2) + bounds.y*2) % (bounds.y*2) - bounds.y;
+
+      posAttr.array[i*3]=x;
+      posAttr.array[i*3+1]=y;
+      posAttr.array[i*3+2]=z;
+    }
+    posAttr.needsUpdate = true;
+
+    let lineIdx = 0;
+    for(let i=0;i<COUNT && lineIdx<MAX_LINES;i++){
+      const ix=i*3;
+      for(let j=i+1;j<COUNT && lineIdx<MAX_LINES;j++){
+        const jx=j*3;
+        const dx=posAttr.array[ix]-posAttr.array[jx];
+        const dy=posAttr.array[ix+1]-posAttr.array[jx+1];
+        const dz=posAttr.array[ix+2]-posAttr.array[jx+2];
+        const distSq=dx*dx+dy*dy+dz*dz;
+        if(distSq < MAX_DIST*MAX_DIST){
+          const li=lineIdx*6;
+          linePosAttr.array[li]  =posAttr.array[ix];
+          linePosAttr.array[li+1]=posAttr.array[ix+1];
+          linePosAttr.array[li+2]=posAttr.array[ix+2];
+          linePosAttr.array[li+3]=posAttr.array[jx];
+          linePosAttr.array[li+4]=posAttr.array[jx+1];
+          linePosAttr.array[li+5]=posAttr.array[jx+2];
+          lineIdx++;
+        }
+      }
+    }
+    lineGeo.setDrawRange(0, lineIdx*2);
+    linePosAttr.needsUpdate = true;
+
+    swarmGroup.rotation.y = Math.sin(t*.05)*.1;
+    swarmGroup.rotation.x = Math.sin(t*.07)*.05;
 
     camera.position.x += (mouseX*4 - camera.position.x)*0.02;
     camera.position.y += (-mouseY*3 - camera.position.y)*0.02;
-    camera.lookAt(atomGroup.position);
+    camera.lookAt(swarmGroup.position);
 
     renderer.render(scene, camera);
   }
@@ -1631,7 +1700,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
     camera.aspect = heroSection.clientWidth/heroSection.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
-    atomGroup.position.x = heroSection.clientWidth > 900 ? 9 : 0;
+    swarmGroup.position.x = heroSection.clientWidth > 900 ? 9 : 0;
   });
 })();
 
