@@ -118,11 +118,18 @@ nav{
   background:radial-gradient(circle,rgba(30,107,245,.1) 0%,transparent 70%);
   top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
 }
+#atom-canvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;pointer-events:none;opacity:0;
+  transition:opacity 1.2s ease;
+}
+#atom-canvas.loaded{opacity:1}
 .hero-inner{
   position:relative;z-index:1;
   display:grid;grid-template-columns:1fr 420px;gap:80px;
   align-items:center;width:100%;max-width:1300px;margin:0 auto;
 }
+.tilt-wrap{perspective:1400px}
 .hero-left{}
 .hero-chip{
   display:inline-flex;align-items:center;gap:8px;
@@ -189,7 +196,9 @@ nav{
   background:var(--card);border:1px solid var(--border2);
   border-radius:16px;overflow:hidden;
   box-shadow:0 0 60px rgba(30,107,245,.12),0 32px 64px rgba(0,0,0,.4);
-  position:relative;
+  position:relative;transform-style:preserve-3d;
+  transition:transform .15s ease-out,box-shadow .3s;
+  will-change:transform;
 }
 .profile-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
@@ -375,19 +384,22 @@ nav{
 
 /* ── TECH STACK ── */
 #stack{background:var(--bg)}
-.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
 .stack-item{
   background:var(--card);border:1px solid var(--border);
-  border-radius:8px;padding:18px 14px;text-align:center;
-  transition:border-color .25s,transform .25s,box-shadow .25s;
+  border-left:2px solid var(--border2);
+  border-radius:6px;padding:14px 16px;text-align:left;
+  display:flex;align-items:center;
+  transition:border-color .25s,transform .25s,box-shadow .25s,background .25s;
   cursor:default;
 }
 .stack-item:hover{
-  border-color:rgba(30,107,245,.5);transform:translateY(-3px);
+  border-color:var(--blue);border-left-color:var(--blue);
+  background:var(--card2);transform:translateY(-2px);
   box-shadow:0 8px 24px rgba(30,107,245,.1);
 }
-.stack-emoji{font-size:1.6rem;margin-bottom:8px;display:block}
-.stack-name{font-family:var(--mono);font-size:.65rem;color:var(--text2);font-weight:500;letter-spacing:.04em}
+.stack-name{font-family:var(--mono);font-size:.72rem;color:var(--text2);font-weight:500;letter-spacing:.03em}
+.stack-item:hover .stack-name{color:var(--text)}
 .stack-cat{
   margin-bottom:32px;
 }
@@ -643,6 +655,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
 <section id="home">
   <div class="hero-bg-grid"></div>
   <div class="hero-glow"></div>
+  <canvas id="atom-canvas"></canvas>
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-chip">Full Stack Developer · AI & Automation Specialist</div>
@@ -670,8 +683,8 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
         </div>
       </div>
     </div>
-    <div>
-      <div class="profile-card">
+    <div class="tilt-wrap" id="tiltWrap">
+      <div class="profile-card" id="profileCard">
         <div class="profile-img-wrap">
           <img src="./assets/img/portfolioben1.png" alt="Benedict Donato">
           <div class="profile-img-overlay"></div>
@@ -861,44 +874,45 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
     <div class="stack-cat fade-up">
       <div class="stack-cat-label">// Languages & Backend</div>
       <div class="stack-grid">
-        <div class="stack-item"><span class="stack-emoji">🐘</span><span class="stack-name">PHP</span></div>
-        <div class="stack-item"><span class="stack-emoji">🟢</span><span class="stack-name">Node.js</span></div>
-        <div class="stack-item"><span class="stack-emoji">🟨</span><span class="stack-name">JavaScript</span></div>
-        <div class="stack-item"><span class="stack-emoji">🌐</span><span class="stack-name">HTML &amp; CSS</span></div>
-        <div class="stack-item"><span class="stack-emoji">🐬</span><span class="stack-name">MySQL</span></div>
-        <div class="stack-item"><span class="stack-emoji">🔌</span><span class="stack-name">REST APIs</span></div>
-        <div class="stack-item"><span class="stack-emoji">⚡</span><span class="stack-name">WebSockets</span></div>
+        <div class="stack-item"><span class="stack-name">PHP</span></div>
+        <div class="stack-item"><span class="stack-name">Node.js</span></div>
+        <div class="stack-item"><span class="stack-name">JavaScript</span></div>
+        <div class="stack-item"><span class="stack-name">HTML &amp; CSS</span></div>
+        <div class="stack-item"><span class="stack-name">MySQL</span></div>
+        <div class="stack-item"><span class="stack-name">REST APIs</span></div>
+        <div class="stack-item"><span class="stack-name">WebSockets</span></div>
+         <div class="stack-item"><span class="stack-name">AJAX</span></div>
       </div>
     </div>
     <div class="stack-cat fade-up">
     <div class="stack-cat-label">// AI, Automation &amp; Integrations</div>
     <div class="stack-grid">
-      <div class="stack-item"><span class="stack-emoji">⚡</span><span class="stack-name">Zapier</span></div>
-      <div class="stack-item"><span class="stack-emoji">🔄</span><span class="stack-name">n8n</span></div>
-      <div class="stack-item"><span class="stack-emoji">🤖</span><span class="stack-name">AI / LLM APIs</span></div>
-      <div class="stack-item"><span class="stack-emoji">🤖</span><span class="stack-name">OpenAI API</span></div>
-      <div class="stack-item"><span class="stack-emoji">🧠</span><span class="stack-name">Claude API</span></div>
-      <div class="stack-item"><span class="stack-emoji">📊</span><span class="stack-name">HubSpot</span></div>
-      <div class="stack-item"><span class="stack-emoji">🛒</span><span class="stack-name">Shopify</span></div>
-      <div class="stack-item"><span class="stack-emoji">💬</span><span class="stack-name">Slack API</span></div>
-      <div class="stack-item"><span class="stack-emoji">📧</span><span class="stack-name">Mailchimp</span></div>
-      <div class="stack-item"><span class="stack-emoji">🎫</span><span class="stack-name">Freshdesk</span></div>
-      <div class="stack-item"><span class="stack-emoji">💰</span><span class="stack-name">QuickBooks</span></div>
+      <div class="stack-item"><span class="stack-name">Zapier</span></div>
+      <div class="stack-item"><span class="stack-name">n8n</span></div>
+      <div class="stack-item"><span class="stack-name">AI / LLM APIs</span></div>
+      <div class="stack-item"><span class="stack-name">OpenAI API</span></div>
+      <div class="stack-item"><span class="stack-name">Claude API</span></div>
+      <div class="stack-item"><span class="stack-name">HubSpot</span></div>
+      <div class="stack-item"><span class="stack-name">Shopify</span></div>
+      <div class="stack-item"><span class="stack-name">Slack API</span></div>
+      <div class="stack-item"><span class="stack-name">Mailchimp</span></div>
+      <div class="stack-item"><span class="stack-name">Freshdesk</span></div>
+      <div class="stack-item"><span class="stack-name">QuickBooks</span></div>
     </div>
     </div>
     <div class="stack-cat fade-up">
       <div class="stack-cat-label">// Development Tools &amp; Platforms</div>
       <div class="stack-grid">
-        <div class="stack-item"><span class="stack-emoji">🔷</span><span class="stack-name">VS Code</span></div>
-        <div class="stack-item"><span class="stack-emoji">⚛️</span><span class="stack-name">Atom</span></div>
-        <div class="stack-item"><span class="stack-emoji">📝</span><span class="stack-name">Zed</span></div>
-        <div class="stack-item"><span class="stack-emoji">🐙</span><span class="stack-name">Git/GitHub</span></div>
-        <div class="stack-item"><span class="stack-emoji">📮</span><span class="stack-name">Postman</span></div>
-        <div class="stack-item"><span class="stack-emoji">🖥️</span><span class="stack-name">XAMPP</span></div>
-        <div class="stack-item"><span class="stack-emoji">🚀</span><span class="stack-name">Laragon</span></div>
-        <div class="stack-item"><span class="stack-emoji">🌐</span><span class="stack-name">Ngrok</span></div>
-        <div class="stack-item"><span class="stack-emoji">☁️</span><span class="stack-name">Hostinger</span></div>
-        <div class="stack-item"><span class="stack-emoji">🌎</span><span class="stack-name">GoDaddy</span></div>
+        <div class="stack-item"><span class="stack-name">VS Code</span></div>
+        <div class="stack-item"><span class="stack-name">Atom</span></div>
+        <div class="stack-item"><span class="stack-name">Zed</span></div>
+        <div class="stack-item"><span class="stack-name">Git/GitHub</span></div>
+        <div class="stack-item"><span class="stack-name">Postman</span></div>
+        <div class="stack-item"><span class="stack-name">XAMPP</span></div>
+        <div class="stack-item"><span class="stack-name">Laragon</span></div>
+        <div class="stack-item"><span class="stack-name">Ngrok</span></div>
+        <div class="stack-item"><span class="stack-name">Hostinger</span></div>
+        <div class="stack-item"><span class="stack-name">GoDaddy</span></div>
       </div>
     </div>
   </div>
@@ -954,7 +968,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
         </div>
     </div>
 
-      <div class="proj fade-up">
+    <div class="proj fade-up">
         <div class="proj-img">
             <img src="./assets/img/orderandgo.png" alt="Order&Go Ordering & Delivery Platform">
             <div class="proj-badge">FULL-STACK / ORDERING &amp; DELIVERY PLATFORM</div>
@@ -1227,6 +1241,100 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
         </div>
     </div>
 <!--
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/orderandgo.png" alt="Order&Go Ordering & Delivery Platform">
+            <div class="proj-badge">FULL-STACK / ORDERING &amp; DELIVERY PLATFORM</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                Order&amp;Go – Full-Stack Ordering, Delivery &amp; Payment Platform
+            </div>
+
+            <div class="proj-desc">
+                Production-style <strong>online ordering and delivery platform</strong> built from scratch with real payment processing, covering the complete customer journey from browsing products to checkout, live payment confirmation, and order tracking — plus a comprehensive administrative backend for managing orders, staff, inventory, schedules, delivery zones, and store credit.
+            </div>
+
+            <div class="proj-stack">
+                <span>PHP</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>MySQL</span>
+                <span>AJAX</span>
+                <span>REST API</span>
+                <span>PayMongo API</span>
+                <span>Webhooks</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Technical Highlights</strong>
+
+                <ul style="margin-top:12px;padding-left:20px;">
+                    <li>Supports both guest and registered checkout with delivery or store pickup.</li>
+
+                    <li>Admin-configurable minimum order thresholds, promo codes, store credit, and scheduled ("Order for Later") orders validated against live store hours.</li>
+
+                    <li>Integrated with the <strong>PayMongo API</strong> supporting GCash, Maya, GrabPay, and card payments.</li>
+
+                    <li>Webhook-driven payment confirmation with automatic fallback payment verification, ensuring payment status remains accurate even when webhook delivery is delayed or missed.</li>
+
+                    <li>Complete administrative dashboard featuring order lifecycle management, order status updates, tracking-link dispatch, cancellation handling, refund tracking, customer management, staff management, store-credit management, store schedule configuration, and delivery-zone management.</li>
+
+                    <li>Automatic inventory restoration and store-credit recovery when eligible orders are cancelled.</li>
+
+                    <li>Security-first architecture using prepared statements to prevent SQL injection, CSRF protection on all state-changing requests, server-side validation of pricing, discounts, credits, and inventory, IP-based rate limiting, account lockout protection, and a self-hosted anti-replay math CAPTCHA.</li>
+
+                    <li>Responsive mobile-first interface with light/dark theme support using system preference detection.</li>
+
+                    <li>Includes Data Privacy Act (RA 10173)-aligned Privacy Policy and Terms of Service pages.</li>
+
+                    <li>Built with PHP, MySQL, AJAX, REST APIs, and modern asynchronous request handling for a production-style user experience.</li>
+                </ul>
+
+                <div style="margin-top:18px;padding:16px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.04);">
+                    <h4 style="margin:0 0 12px;">Demo Access</h4>
+
+                    <p style="margin:0 0 12px;">
+                        <strong>Customer Demo:</strong><br>
+                        Browse products, place orders, and complete checkout normally.
+                    </p>
+
+                    <p style="margin:0 0 12px;">
+                        <strong>Admin Dashboard</strong><br>
+                        Username: <strong>admin</strong><br>
+                        Password: <strong>admin123</strong>
+                    </p>
+
+                    <p style="margin:0;">
+                        <strong>PayMongo Sandbox Test Card</strong><br>
+                        Card: <strong>4343 4343 4343 4345</strong><br>
+                        Expiry: <strong>Any future date</strong><br>
+                        CVV: <strong>Any 3 digits</strong>
+                    </p>
+
+                    <small style="display:block;margin-top:12px;opacity:.8;">
+                        This portfolio demo uses the PayMongo Sandbox environment. No real charges are made.
+                    </small>
+                </div>
+            </div>
+
+            <a href="https://testsiteben.ct.ws/index.php"
+               target="_blank"
+               class="proj-link">
+                TEST THE LIVE SYSTEM →
+            </a>
+
+            <a href="https://testsiteben.ct.ws/admin"
+               target="_blank"
+               class="proj-link">
+                VIEW ADMIN PANEL →
+            </a>
+        </div>
+    </div>
+-->
+<!-- COMING SOON
       <div class="proj fade-up">
         <div class="proj-img"><img src="./assets/img/work/martha.jpg" alt="CEO Dashboard"><div class="proj-badge">DASHBOARD</div></div>
         <div class="proj-body">
@@ -1421,7 +1529,130 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+// ── 3D ATOM HERO BACKGROUND ──
+(function initAtom(){
+  const canvas = document.getElementById('atom-canvas');
+  if(!canvas || typeof THREE === 'undefined') return;
+  const heroSection = document.getElementById('home');
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, heroSection.clientWidth/heroSection.clientHeight, 0.1, 1000);
+  camera.position.z = 34;
+
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
+
+  const atomGroup = new THREE.Group();
+  scene.add(atomGroup);
+
+  // Nucleus
+  const nucleusGeo = new THREE.IcosahedronGeometry(3.1, 2);
+  const nucleusMat = new THREE.MeshBasicMaterial({color:0x1e6bf5, wireframe:true, transparent:true, opacity:.55});
+  const nucleus = new THREE.Mesh(nucleusGeo, nucleusMat);
+  atomGroup.add(nucleus);
+
+  const nucleusCoreGeo = new THREE.IcosahedronGeometry(1.6, 1);
+  const nucleusCoreMat = new THREE.MeshBasicMaterial({color:0x06d6f7, wireframe:true, transparent:true, opacity:.35});
+  atomGroup.add(new THREE.Mesh(nucleusCoreGeo, nucleusCoreMat));
+
+  // Orbit rings + electrons
+  const orbitColors = [0x1e6bf5, 0x4d8fff, 0x06d6f7];
+  const orbits = [];
+  const electrons = [];
+  const radii = [9, 12, 15];
+
+  radii.forEach((r,i)=>{
+    const ringGeo = new THREE.TorusGeometry(r, 0.03, 8, 100);
+    const ringMat = new THREE.MeshBasicMaterial({color:orbitColors[i%orbitColors.length], transparent:true, opacity:.28});
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.PI/2 + i*0.9;
+    ring.rotation.y = i*0.6;
+    atomGroup.add(ring);
+    orbits.push(ring);
+
+    const elGeo = new THREE.SphereGeometry(0.34, 16, 16);
+    const elMat = new THREE.MeshBasicMaterial({color:orbitColors[i%orbitColors.length]});
+    const electron = new THREE.Mesh(elGeo, elMat);
+    atomGroup.add(electron);
+    electrons.push({mesh:electron, radius:r, speed:.35 + i*.18, offset:i*2.1, ring});
+  });
+
+  // Sparse ambient points
+  const starCount = 120;
+  const starGeo = new THREE.BufferGeometry();
+  const starPos = new Float32Array(starCount*3);
+  for(let i=0;i<starCount;i++){
+    starPos[i*3] = (Math.random()-.5)*70;
+    starPos[i*3+1] = (Math.random()-.5)*50;
+    starPos[i*3+2] = (Math.random()-.5)*40 - 10;
+  }
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos,3));
+  const starMat = new THREE.PointsMaterial({color:0x4d8fff, size:.18, transparent:true, opacity:.5});
+  scene.add(new THREE.Points(starGeo, starMat));
+
+  atomGroup.position.x = heroSection.clientWidth > 900 ? 9 : 0;
+
+  let mouseX = 0, mouseY = 0;
+  heroSection.addEventListener('mousemove', e=>{
+    const rect = heroSection.getBoundingClientRect();
+    mouseX = ((e.clientX - rect.left)/rect.width - .5);
+    mouseY = ((e.clientY - rect.top)/rect.height - .5);
+  });
+
+  const clock = new THREE.Clock();
+  function animate(){
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    atomGroup.rotation.y += 0.0022;
+    atomGroup.rotation.x = Math.sin(t*.15)*.15;
+
+    electrons.forEach(e=>{
+      const a = t*e.speed + e.offset;
+      const localX = Math.cos(a)*e.radius;
+      const localZ = Math.sin(a)*e.radius;
+      const tiltVec = new THREE.Vector3(localX,0,localZ).applyEuler(e.ring.rotation);
+      e.mesh.position.set(tiltVec.x, tiltVec.y, tiltVec.z);
+    });
+
+    camera.position.x += (mouseX*4 - camera.position.x)*0.02;
+    camera.position.y += (-mouseY*3 - camera.position.y)*0.02;
+    camera.lookAt(atomGroup.position);
+
+    renderer.render(scene, camera);
+  }
+  animate();
+  requestAnimationFrame(()=>canvas.classList.add('loaded'));
+
+  window.addEventListener('resize', ()=>{
+    camera.aspect = heroSection.clientWidth/heroSection.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
+    atomGroup.position.x = heroSection.clientWidth > 900 ? 9 : 0;
+  });
+})();
+
+// ── 3D TILT ON PROFILE CARD ──
+(function initTilt(){
+  const wrap = document.getElementById('tiltWrap');
+  const card = document.getElementById('profileCard');
+  if(!wrap || !card) return;
+  wrap.addEventListener('mousemove', e=>{
+    const rect = wrap.getBoundingClientRect();
+    const px = (e.clientX - rect.left)/rect.width;
+    const py = (e.clientY - rect.top)/rect.height;
+    const rx = (py - .5) * -10;
+    const ry = (px - .5) * 12;
+    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(10px)`;
+  });
+  wrap.addEventListener('mouseleave', ()=>{
+    card.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
+  });
+})();
+
 // Marquee
 const techs=['PHP','JavaScript','Node.js','MySQL','Zapier','AI / LLMs','HubSpot','Shopify','Slack API','Freshdesk','QuickBooks','Xampp','Laragon','Zed','VS','Postman','HTML / CSS','Git','n8n','Hostinger','Atom','Full Stack Dev','Automation','GoDaddy'];
 const m=document.getElementById('marquee');
