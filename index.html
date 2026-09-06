@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -465,6 +465,36 @@ nav{
   transition:background .2s,color .2s,border-color .2s;display:block;
 }
 .proj-link:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.proj-category{grid-column:1/-1;display:flex;align-items:center;gap:16px;margin:64px 0 26px}
+.proj-category:first-child{margin-top:0}
+.proj-category-label{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);white-space:nowrap;
+}
+.proj-category-sub{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.proj-category-line{height:1px;flex:1;background:linear-gradient(90deg,rgba(6,214,247,.35),transparent)}
+.proj-img-mock{width:100%;height:100%;display:flex;flex-direction:column;background:linear-gradient(160deg,var(--card2),var(--bg3))}
+.mock-bar{
+  height:26px;flex-shrink:0;display:flex;align-items:center;gap:5px;padding:0 10px;
+  background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06);
+}
+.mock-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.18)}
+.mock-url{
+  margin-left:6px;font-family:var(--mono);font-size:.56rem;color:var(--muted);
+  background:rgba(255,255,255,.04);padding:2px 10px;border-radius:20px;
+  flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+}
+.mock-body{flex:1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mock-body::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(30,107,245,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(30,107,245,.10) 1px,transparent 1px);
+  background-size:18px 18px;
+}
+.mock-icon{font-size:2rem;position:relative;z-index:1;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45))}
+.mock-label{
+  position:absolute;bottom:10px;left:0;right:0;text-align:center;z-index:1;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--blue3);text-transform:uppercase;
+}
 
 /* ── CONTACT ── */
 #contact{background:var(--bg);padding:120px 5vw}
@@ -651,14 +681,15 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
   </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#stack">Tech Stack</a></li>
-    <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
     <div class="nav-status"><span class="status-dot"></span>Available for Work</div>
+
   </div>
 </nav>
 
@@ -774,181 +805,6 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="section">
-  <div class="section-inner">
-    <div class="sec-eyebrow">What I Do</div>
-    <h2 class="sec-title">Services</h2>
-    <p class="sec-sub">End-to-end solutions across full-stack development, AI integration, automation engineering, and IT infrastructure.</p>
-    <div class="services-grid">
-      <div class="svc fade-up">
-        <div class="svc-num">01</div>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-        <h3>Full Stack Development</h3>
-        <p>End-to-end web applications from database design to pixel-perfect frontends. PHP, MySQL, JavaScript, and modern frameworks — built for performance and scale.</p>
-        <div class="svc-arrow">↗</div>
-      </div>
-      <div class="svc fade-up">
-        <div class="svc-num">02</div>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="19" cy="5" r="3"/></svg></div>
-        <h3>AI Integration & Chatbots</h3>
-        <p>Embed AI into your existing systems — knowledge bots, customer assistants, automated summaries, and intelligent data processing powered by the latest LLMs.</p>
-        <div class="svc-arrow">↗</div>
-      </div>
-      <div class="svc fade-up">
-        <div class="svc-num">03</div>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <h3>Zapier Workflow Automation</h3>
-        <p>Design and optimize automated pipelines connecting your entire app ecosystem. Reduce manual work, eliminate errors, and scale operations without adding headcount.</p>
-        <div class="svc-arrow">↗</div>
-      </div>
-      <div class="svc fade-up">
-        <div class="svc-num">04</div>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M5 17l7-6M19 17l-7-6"/></svg></div>
-        <h3>IT Network</h3>
-        <p>Network infrastructure design and implementation — LAN/WAN, routers, switches, firewalls, and server configuration for reliable and secure operations.</p>
-        <div class="svc-arrow">↗</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience" class="section">
-  <div class="section-inner">
-    <div class="sec-eyebrow">Background</div>
-    <h2 class="sec-title">Experience & Education</h2>
-    <div class="exp-layout">
-      <div>
-        <div class="exp-col-head">Work History</div>
-        <div class="tl">
-          <div class="tl-item active fade-up">
-            <div class="tl-period">2021 — PRESENT</div>
-            <div class="tl-title">Full Stack Developer | AI & Automation Specialist</div>
-            <div class="tl-company">Ben Don™ Dev</div>
-            <div class="tl-body"><p>
-              Freelance Full Stack Developer and AI Automation Specialist delivering custom web applications, internal and external business systems, and AI-powered automation solutions. Build scalable software, integrate
-              third-party APIs, and create intelligent workflows with Zapier, n8n, and AI tools.</p></div>
-          </div>
-          <div class="tl-item fade-up">
-            <div class="tl-period">April 2024 — July 2025</div>
-            <div class="tl-title">Zapier Technical Support Engineer</div>
-            <div class="tl-company">Zapier Automation</div>
-            <div class="tl-body">Troubleshoot, configure and optimize automated workflows at scale. Help enterprise clients build seamless multi-app integrations and resolve complex technical issues.</div>
-          </div>
-          <div class="tl-item fade-up">
-            <div class="tl-period">2021</div>
-            <div class="tl-title">Website Developer</div>
-            <div class="tl-company">Kemecon Career Canada</div>
-            <div class="tl-body">Contract-based development and maintenance of a job posting and career platform.</div>
-          </div>
-          <div class="tl-item fade-up">
-            <div class="tl-period">2019</div>
-            <div class="tl-title">Field IT Network Support Specialist</div>
-            <div class="tl-company">30th SEA Games Philippines</div>
-            <div class="tl-body">LAN/WAN implementation delivering real-time scores worldwide. Baseball event, New Clark City, Pampanga.</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="exp-col-head">Education</div>
-        <div class="tl">
-          <div class="tl-item active fade-up">
-            <div class="tl-period">2017 — 2021</div>
-            <div class="tl-title">BS Computer Science — Information Technology</div>
-            <div class="tl-company">Arellano University</div>
-            <div class="tl-body">Graduated with a major in Information Technology. Strong foundation in algorithms, databases, networking and software engineering.</div>
-          </div>
-          <div class="tl-item fade-up">
-            <div class="tl-period">2000 — 2004</div>
-            <div class="tl-title">Secondary Education</div>
-            <div class="tl-company">San Beda College</div>
-            <div class="tl-body">Passed NEAT Accreditation — DepEd.</div>
-          </div>
-          <div class="tl-item fade-up">
-            <div class="tl-period">1994 — 2000</div>
-            <div class="tl-title">Primary Education</div>
-            <div class="tl-company">La Consolacion College</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TECH STACK -->
-<section id="stack" class="section">
-  <div class="section-inner">
-    <div class="sec-eyebrow">Technologies</div>
-    <h2 class="sec-title">Tech Stack</h2>
-    <p class="sec-sub">Tools and technologies I use to build, automate, and deploy modern digital solutions.</p>
-
-    <div class="stack-cats">
-      <div class="stack-cat fade-up">
-        <div class="stack-cat-head">
-          <span class="stack-cat-index">~</span>
-          <span class="stack-cat-label">Languages &amp; Backend</span>
-          <span class="stack-cat-line"></span>
-          <span class="stack-cat-count"></span>
-        </div>
-        <div class="stack-grid">
-          <span class="stack-item">PHP</span>
-          <span class="stack-item">Node.js</span>
-          <span class="stack-item">JavaScript</span>
-          <span class="stack-item">HTML &amp; CSS</span>
-          <span class="stack-item">MySQL</span>
-          <span class="stack-item">REST APIs</span>
-          <span class="stack-item">WebSockets</span>
-          <span class="stack-item">AJAX</span>
-        </div>
-      </div>
-
-      <div class="stack-cat fade-up">
-        <div class="stack-cat-head">
-          <span class="stack-cat-index">~</span>
-          <span class="stack-cat-label">AI, Automation &amp; Integrations</span>
-          <span class="stack-cat-line"></span>
-          <span class="stack-cat-count"></span>
-        </div>
-        <div class="stack-grid">
-          <span class="stack-item">Zapier</span>
-          <span class="stack-item">n8n</span>
-          <span class="stack-item">AI / LLM APIs</span>
-          <span class="stack-item">OpenAI API</span>
-          <span class="stack-item">Claude API</span>
-          <span class="stack-item">HubSpot</span>
-          <span class="stack-item">Shopify</span>
-          <span class="stack-item">Slack API</span>
-          <span class="stack-item">Mailchimp</span>
-          <span class="stack-item">Freshdesk</span>
-          <span class="stack-item">QuickBooks</span>
-        </div>
-      </div>
-
-      <div class="stack-cat fade-up">
-        <div class="stack-cat-head">
-          <span class="stack-cat-index">~</span>
-          <span class="stack-cat-label">Development Tools &amp; Platforms</span>
-          <span class="stack-cat-line"></span>
-          <span class="stack-cat-count"></span>
-        </div>
-        <div class="stack-grid">
-          <span class="stack-item">VS Code</span>
-          <span class="stack-item">Atom</span>
-          <span class="stack-item">Zed</span>
-          <span class="stack-item">Git/GitHub</span>
-          <span class="stack-item">Postman</span>
-          <span class="stack-item">XAMPP</span>
-          <span class="stack-item">Laragon</span>
-          <span class="stack-item">Ngrok</span>
-          <span class="stack-item">Hostinger</span>
-          <span class="stack-item">GoDaddy</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PROJECTS -->
 <section id="projects" class="section">
   <div class="section-inner">
@@ -956,6 +812,12 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
     <h2 class="sec-title">Projects & Systems</h2>
     <p class="sec-sub">Real-world web applications, AI tools, and automation systems built to solve business problems.</p>
     <div class="projects-grid">
+
+    <div class="proj-category">
+      <div class="proj-category-label">Featured Systems</div>
+      <div class="proj-category-sub">— Full-Stack, AI &amp; Automation</div>
+      <div class="proj-category-line"></div>
+    </div>
 
     <div class="proj fade-up">
         <div class="proj-img">
@@ -1094,6 +956,205 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
            VIEW SYSTEM DEMO VIDEO →
         </a>
       </div>
+    </div>
+
+    <div class="proj-category">
+      <div class="proj-category-label">Booking</div>
+      <div class="proj-category-line"></div>
+    </div>
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/lakbayph.png" alt="LakbayPH Resort and Hotel Booking Platform">
+            <div class="proj-badge">CONCEPT / BOOKING PLATFORM</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                LakbayPH – Resort &amp; Hotel Booking Platform
+            </div>
+
+            <div class="proj-desc">
+                Modern resort and hotel booking platform concept for the Philippines, covering the full guest journey — search by destination and dates, browse resorts and rooms, and complete a booking through to confirmation — plus an admin dashboard for tracking bookings and revenue. The data layer is cleanly separated from the UI, structured to plug into a real database and payment provider without touching any page or component.
+            </div>
+
+            <div class="proj-stack">
+                <span>Next.js 14</span>
+                <span>TypeScript</span>
+                <span>Tailwind CSS</span>
+                <span>Custom Design System</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Highlights:</strong> Full guest journey from destination/date search to room booking and confirmation, plus an admin dashboard for bookings and revenue.
+                Cleanly separated data layer with optional Supabase or SQL-ready architecture for production database and payment integration.
+            </div>
+
+            <a href="https://lakbayph-ben.vercel.app/"
+               target="_blank"
+               class="proj-link">
+                VISIT LIVE SITE →
+            </a>
+        </div>
+    </div>
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/konsultaph.png" alt="Konsulta.ph Doctor Appointment Booking Platform">
+            <div class="proj-badge">CONCEPT / BOOKING PLATFORM</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                Konsulta.ph – Doctor Appointment Booking Platform
+            </div>
+
+            <div class="proj-desc">
+                Mobile-first doctor appointment booking platform concept for the Philippine market. Patients can search and filter doctors by specialty, city, and consultation mode, view real-time availability, and complete a full 3-step booking flow — from slot selection to a confirmed appointment with a reference number.
+            </div>
+
+            <div class="proj-stack">
+                <span>PHP</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>JSON Data Layer</span>
+                <span>localStorage Fallback</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Highlights:</strong> No frameworks, with a lightweight PHP + flat-file backend for local development and a
+                localStorage fallback for static hosting.
+                Optional Supabase or SQL-ready architecture allows the project to scale to a production database when needed.
+            </div>
+
+            <a href="https://konsultaph.vercel.app/"
+               target="_blank"
+               class="proj-link">
+                VISIT LIVE SITE →
+            </a>
+        </div>
+    </div>
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/phlegalservices.png" alt="PH Legal Services Lawyer Consultation Booking Platform">
+            <div class="proj-badge">CONCEPT / BOOKING PLATFORM</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                PH Legal Services – Lawyer Consultation Booking Platform
+            </div>
+
+            <div class="proj-desc">
+                Lawyer consultation booking platform concept for the Philippine market. Clients can browse a directory of attorneys by practice area — family, corporate, immigration, labor, and criminal law — view lawyer profiles with credentials and rates, and book a consultation without playing phone tag with a receptionist.
+            </div>
+
+            <div class="proj-stack">
+                <span>PHP</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>JSON Data Layer</span>
+                <span>localStorage Fallback</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Highlights:</strong> Scalable sample architecture with a lightweight PHP/JSON
+                backend for local development, designed to transition to a production-ready database
+                with automation features such as notifications, reminders, and booking management.
+            </div>
+
+            <a href="https://ph-legal-services.vercel.app/"
+               target="_blank"
+               class="proj-link">
+                VISIT LIVE SITE →
+            </a>
+        </div>
+    </div>
+
+    <div class="proj-category">
+      <div class="proj-category-label">School &amp; Learning</div>
+      <div class="proj-category-line"></div>
+    </div>
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/lmsph.png" alt="LMSPH School Learning Management System">
+            <div class="proj-badge">CONCEPT / SCHOOL LMS</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                LMSPH – School Learning Management System
+            </div>
+
+            <div class="proj-desc">
+                School learning management system built for the Philippine K-12 setup — students track assignments, grades, and their weekly schedule; teachers manage classes, grade submissions, and post announcements; administrators oversee attendance, performance analytics, and school-wide activity. Grading follows DepEd's official descriptor system rather than a generic letter scale, and the course catalog reflects the actual Grade 10 curriculum.
+            </div>
+
+            <div class="proj-stack">
+                <span>Next.js</span>
+                <span>TypeScript</span>
+                <span>Tailwind CSS</span>
+                <span>Custom Component System</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Highlights:</strong> Runs on realistic mock data behind a clean service layer standing in for a database, so the UI never has to change when a real backend gets wired in — three role-based views for students, teachers, and admins.
+            </div>
+
+            <a href="https://lmsph.vercel.app/"
+               target="_blank"
+               class="proj-link">
+                VISIT LIVE SITE →
+            </a>
+        </div>
+    </div>
+
+    <div class="proj-category">
+      <div class="proj-category-label">Community</div>
+      <div class="proj-category-line"></div>
+    </div>
+
+    <div class="proj fade-up">
+        <div class="proj-img">
+            <img src="./assets/img/floodsafe.png" alt="FloodSafe Flood-Aware Navigation App">
+            <div class="proj-badge">CONCEPT / COMMUNITY SAFETY</div>
+        </div>
+
+        <div class="proj-body">
+            <div class="proj-title">
+                FloodSafe – Flood-Aware Navigation for Metro Manila
+            </div>
+
+            <div class="proj-desc">
+                Flood-aware navigation concept for Metro Manila, styled after modern GPS apps like Google Maps and Waze. Enter a start and destination, and it plots a route with real-time flood-risk indicators (safe/moderate/heavy) along a real map of the city's actual flood corridors — including the Pasig and Marikina river basins. If the fastest route runs through heavy flooding, FloodSafe flags it and automatically surfaces a safer alternate.
+            </div>
+
+            <div class="proj-stack">
+                <span>Next.js</span>
+                <span>React</span>
+                <span>TypeScript</span>
+                <span>Tailwind CSS</span>
+            </div>
+
+            <div class="proj-result">
+                <strong>Highlights:</strong> Mock routing/flood-data engine designed to be swapped for live APIs later, built around real flood-prone corridors so the risk indicators reflect actual geography rather than arbitrary zones.
+            </div>
+
+            <a href="https://floodsafe-ben.vercel.app/"
+               target="_blank"
+               class="proj-link">
+                VISIT LIVE SITE →
+            </a>
+        </div>
+    </div>
+
+    <div class="proj-category">
+      <div class="proj-category-label">AI &amp; Automation</div>
+      <div class="proj-category-line"></div>
     </div>
 
     <div class="proj fade-up">
@@ -1271,120 +1332,204 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
             </a>
         </div>
     </div>
-<!--
-    <div class="proj fade-up">
-        <div class="proj-img">
-            <img src="./assets/img/orderandgo.png" alt="Order&Go Ordering & Delivery Platform">
-            <div class="proj-badge">FULL-STACK / ORDERING &amp; DELIVERY PLATFORM</div>
-        </div>
-
-        <div class="proj-body">
-            <div class="proj-title">
-                Order&amp;Go – Full-Stack Ordering, Delivery &amp; Payment Platform
-            </div>
-
-            <div class="proj-desc">
-                Production-style <strong>online ordering and delivery platform</strong> built from scratch with real payment processing, covering the complete customer journey from browsing products to checkout, live payment confirmation, and order tracking — plus a comprehensive administrative backend for managing orders, staff, inventory, schedules, delivery zones, and store credit.
-            </div>
-
-            <div class="proj-stack">
-                <span>PHP</span>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>MySQL</span>
-                <span>AJAX</span>
-                <span>REST API</span>
-                <span>PayMongo API</span>
-                <span>Webhooks</span>
-            </div>
-
-            <div class="proj-result">
-                <strong>Technical Highlights</strong>
-
-                <ul style="margin-top:12px;padding-left:20px;">
-                    <li>Supports both guest and registered checkout with delivery or store pickup.</li>
-
-                    <li>Admin-configurable minimum order thresholds, promo codes, store credit, and scheduled ("Order for Later") orders validated against live store hours.</li>
-
-                    <li>Integrated with the <strong>PayMongo API</strong> supporting GCash, Maya, GrabPay, and card payments.</li>
-
-                    <li>Webhook-driven payment confirmation with automatic fallback payment verification, ensuring payment status remains accurate even when webhook delivery is delayed or missed.</li>
-
-                    <li>Complete administrative dashboard featuring order lifecycle management, order status updates, tracking-link dispatch, cancellation handling, refund tracking, customer management, staff management, store-credit management, store schedule configuration, and delivery-zone management.</li>
-
-                    <li>Automatic inventory restoration and store-credit recovery when eligible orders are cancelled.</li>
-
-                    <li>Security-first architecture using prepared statements to prevent SQL injection, CSRF protection on all state-changing requests, server-side validation of pricing, discounts, credits, and inventory, IP-based rate limiting, account lockout protection, and a self-hosted anti-replay math CAPTCHA.</li>
-
-                    <li>Responsive mobile-first interface with light/dark theme support using system preference detection.</li>
-
-                    <li>Includes Data Privacy Act (RA 10173)-aligned Privacy Policy and Terms of Service pages.</li>
-
-                    <li>Built with PHP, MySQL, AJAX, REST APIs, and modern asynchronous request handling for a production-style user experience.</li>
-                </ul>
-
-                <div style="margin-top:18px;padding:16px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.04);">
-                    <h4 style="margin:0 0 12px;">Demo Access</h4>
-
-                    <p style="margin:0 0 12px;">
-                        <strong>Customer Demo:</strong><br>
-                        Browse products, place orders, and complete checkout normally.
-                    </p>
-
-                    <p style="margin:0 0 12px;">
-                        <strong>Admin Dashboard</strong><br>
-                        Username: <strong>admin</strong><br>
-                        Password: <strong>admin123</strong>
-                    </p>
-
-                    <p style="margin:0;">
-                        <strong>PayMongo Sandbox Test Card</strong><br>
-                        Card: <strong>4343 4343 4343 4345</strong><br>
-                        Expiry: <strong>Any future date</strong><br>
-                        CVV: <strong>Any 3 digits</strong>
-                    </p>
-
-                    <small style="display:block;margin-top:12px;opacity:.8;">
-                        This portfolio demo uses the PayMongo Sandbox environment. No real charges are made.
-                    </small>
-                </div>
-            </div>
-
-            <a href="https://testsiteben.ct.ws/index.php"
-               target="_blank"
-               class="proj-link">
-                TEST THE LIVE SYSTEM →
-            </a>
-
-            <a href="https://testsiteben.ct.ws/admin"
-               target="_blank"
-               class="proj-link">
-                VIEW ADMIN PANEL →
-            </a>
-        </div>
     </div>
--->
-<!-- COMING SOON
-      <div class="proj fade-up">
-        <div class="proj-img"><img src="./assets/img/work/martha.jpg" alt="CEO Dashboard"><div class="proj-badge">DASHBOARD</div></div>
-        <div class="proj-body">
-          <div class="proj-title">CEO & Team Management Platform</div>
-          <div class="proj-desc">Centralized business dashboard for project tracking, task management, KPIs, employee updates, and company resources.</div>
-          <div class="proj-stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>Chart.js</span><span>AI Ready</span></div>
-          <div class="proj-result">// Single source of truth that unified operations for the entire company.</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">What I Do</div>
+    <h2 class="sec-title">Services</h2>
+    <p class="sec-sub">End-to-end solutions across full-stack development, AI integration, automation engineering, and IT infrastructure.</p>
+    <div class="services-grid">
+      <div class="svc fade-up">
+        <div class="svc-num">01</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3>Full Stack Development</h3>
+        <p>End-to-end web applications from database design to pixel-perfect frontends. PHP, MySQL, JavaScript, and modern frameworks — built for performance and scale.</p>
+        <div class="svc-arrow">↗</div>
+      </div>
+      <div class="svc fade-up">
+        <div class="svc-num">02</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="19" cy="5" r="3"/></svg></div>
+        <h3>AI Integration & Chatbots</h3>
+        <p>Embed AI into your existing systems — knowledge bots, customer assistants, automated summaries, and intelligent data processing powered by the latest LLMs.</p>
+        <div class="svc-arrow">↗</div>
+      </div>
+      <div class="svc fade-up">
+        <div class="svc-num">03</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3>Zapier Workflow Automation</h3>
+        <p>Design and optimize automated pipelines connecting your entire app ecosystem. Reduce manual work, eliminate errors, and scale operations without adding headcount.</p>
+        <div class="svc-arrow">↗</div>
+      </div>
+      <div class="svc fade-up">
+        <div class="svc-num">04</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M5 17l7-6M19 17l-7-6"/></svg></div>
+        <h3>IT Network</h3>
+        <p>Network infrastructure design and implementation — LAN/WAN, routers, switches, firewalls, and server configuration for reliable and secure operations.</p>
+        <div class="svc-arrow">↗</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Background</div>
+    <h2 class="sec-title">Experience & Education</h2>
+    <div class="exp-layout">
+      <div>
+        <div class="exp-col-head">Work History</div>
+        <div class="tl">
+          <div class="tl-item active fade-up">
+            <div class="tl-period">2021 — PRESENT</div>
+            <div class="tl-title">Full Stack Developer | AI & Automation Specialist</div>
+            <div class="tl-company">Ben Don™ Dev</div>
+            <div class="tl-body"><p>
+              Freelance Full Stack Developer and AI Automation Specialist delivering custom web applications, internal and external business systems, and AI-powered automation solutions. Build scalable software, integrate
+              third-party APIs, and create intelligent workflows with Zapier, n8n, and AI tools.</p></div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">April 2024 — July 2025</div>
+            <div class="tl-title">Zapier Technical Support Engineer</div>
+            <div class="tl-company">Zapier Automation</div>
+            <div class="tl-body">Troubleshoot, configure and optimize automated workflows at scale. Help enterprise clients build seamless multi-app integrations and resolve complex technical issues.</div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">2021</div>
+            <div class="tl-title">Website Developer</div>
+            <div class="tl-company">Kemecon Career Canada</div>
+            <div class="tl-body">Contract-based development and maintenance of a job posting and career platform.</div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">2019</div>
+            <div class="tl-title">Field IT Network Support Specialist</div>
+            <div class="tl-company">30th SEA Games Philippines</div>
+            <div class="tl-body">LAN/WAN implementation delivering real-time scores worldwide. Baseball event, New Clark City, Pampanga.</div>
+          </div>
         </div>
       </div>
-      <div class="proj fade-up">
-        <div class="proj-img"><img src="./assets/img/work/routing.jpg" alt="BPO Platform"><div class="proj-badge">TICKETING</div></div>
-        <div class="proj-body">
-          <div class="proj-title">BPO Contact & Routing Platform</div>
-          <div class="proj-desc">Intelligent contact system with smart ticket routing for support, sales, and customer success teams in a BPO environment.</div>
-          <div class="proj-stack"><span>PHP</span><span>Freshdesk</span><span>Zapier</span><span>Slack</span><span>Gmail</span></div>
-          <div class="proj-result">// Improved ticket visibility and dramatically cut average response time.</div>
+      <div>
+        <div class="exp-col-head">Education</div>
+        <div class="tl">
+          <div class="tl-item active fade-up">
+            <div class="tl-period">2017 — 2021</div>
+            <div class="tl-title">BS Computer Science — Information Technology</div>
+            <div class="tl-company">Arellano University</div>
+            <div class="tl-body">Graduated with a major in Information Technology. Strong foundation in algorithms, databases, networking and software engineering.</div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">2000 — 2004</div>
+            <div class="tl-title">Secondary Education</div>
+            <div class="tl-company">San Beda College</div>
+            <div class="tl-body">Passed NEAT Accreditation — DepEd.</div>
+          </div>
+          <div class="tl-item fade-up">
+            <div class="tl-period">1994 — 2000</div>
+            <div class="tl-title">Primary Education</div>
+            <div class="tl-company">La Consolacion College</div>
+          </div>
         </div>
       </div>
- -->
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack" class="section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Technologies</div>
+    <h2 class="sec-title">Tech Stack</h2>
+    <p class="sec-sub">Tools and technologies I use to build, automate, and deploy modern digital solutions.</p>
+
+    <div class="stack-cats">
+      <div class="stack-cat fade-up">
+        <div class="stack-cat-head">
+          <span class="stack-cat-index">~</span>
+          <span class="stack-cat-label">Full Stack</span>
+          <span class="stack-cat-line"></span>
+          <span class="stack-cat-count"></span>
+        </div>
+        <div class="stack-grid">
+          <span class="stack-item">PHP</span>
+          <span class="stack-item">Node.js</span>
+          <span class="stack-item">JavaScript</span>
+          <span class="stack-item">HTML &amp; CSS</span>
+          <span class="stack-item">MySQL</span>
+          <span class="stack-item">REST APIs</span>
+          <span class="stack-item">WebSockets</span>
+          <span class="stack-item">AJAX</span>
+           <span class="stack-item">Next.js</span>
+            <span class="stack-item">TypeScript</span>
+             <span class="stack-item">Tailwind CSS</span>
+              <span class="stack-item">JSON Data Layer</span>
+        </div>
+      </div>
+
+      <div class="stack-cat fade-up">
+        <div class="stack-cat-head">
+          <span class="stack-cat-index">~</span>
+          <span class="stack-cat-label">AI, Automation &amp; Integrations</span>
+          <span class="stack-cat-line"></span>
+          <span class="stack-cat-count"></span>
+        </div>
+        <div class="stack-grid">
+          <span class="stack-item">Zapier</span>
+          <span class="stack-item">n8n</span>
+          <span class="stack-item">AI / LLM APIs</span>
+          <span class="stack-item">OpenAI API</span>
+          <span class="stack-item">Claude API</span>
+          <span class="stack-item">HubSpot</span>
+          <span class="stack-item">Shopify</span>
+          <span class="stack-item">Slack API</span>
+          <span class="stack-item">Mailchimp</span>
+          <span class="stack-item">Freshdesk</span>
+          <span class="stack-item">QuickBooks</span>
+        </div>
+      </div>
+
+      <div class="stack-cat fade-up">
+        <div class="stack-cat-head">
+          <span class="stack-cat-index">~</span>
+          <span class="stack-cat-label">Payment Gateways &amp; API</span>
+          <span class="stack-cat-line"></span>
+          <span class="stack-cat-count"></span>
+        </div>
+        <div class="stack-grid">
+          <span class="stack-item">PayMongo API</span>
+          <span class="stack-item">Xendit API</span>
+          <span class="stack-item">Maya Business API</span>
+          <span class="stack-item">HitPay API</span>
+          <span class="stack-item">Dragonpay API</span>
+        </div>
+      </div>
+
+      <div class="stack-cat fade-up">
+        <div class="stack-cat-head">
+          <span class="stack-cat-index">~</span>
+          <span class="stack-cat-label">Development Tools &amp; Platforms</span>
+          <span class="stack-cat-line"></span>
+          <span class="stack-cat-count"></span>
+        </div>
+        <div class="stack-grid">
+          <span class="stack-item">VS Code</span>
+          <span class="stack-item">Atom</span>
+          <span class="stack-item">Zed</span>
+          <span class="stack-item">Git/GitHub</span>
+          <span class="stack-item">Postman</span>
+          <span class="stack-item">XAMPP</span>
+          <span class="stack-item">Laragon</span>
+          <span class="stack-item">Ngrok</span>
+          <span class="stack-item">Hostinger</span>
+          <span class="stack-item">GoDaddy</span>
+          <span class="stack-item">Vercel</span>
+          <span class="stack-item">Supabase</span>
+           <span class="stack-item">Cursor</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
